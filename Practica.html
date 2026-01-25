@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso Inglés</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #f2f2f7; padding: 20px; color: #000; }
+        .card { background: white; padding: 20px; border-radius: 15px; max-width: 400px; margin: auto; border: 1px solid #ccc; }
+        .row { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 16px; background: #007aff; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; margin-top: 10px; }
+        .status { font-weight: bold; margin-top: 5px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2 style="text-align:center">Partes de la Cara</h2>
+    
+    <div class="row">
+        <label>Cejas:</label>
+        <input type="text" class="respuesta" data-correcta="eyebrows">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Ojos:</label>
+        <input type="text" class="respuesta" data-correcta="eyes">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Nariz:</label>
+        <input type="text" class="respuesta" data-correcta="nose">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Boca:</label>
+        <input type="text" class="respuesta" data-correcta="mouth">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Pestañas:</label>
+        <input type="text" class="respuesta" data-correcta="eyelashes">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Orejas:</label>
+        <input type="text" class="respuesta" data-correcta="ears">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Mejillas:</label>
+        <input type="text" class="respuesta" data-correcta="cheeks">
+        <span class="feedback"></span>
+    </div>
+
+    <div class="row">
+        <label>Barbilla:</label>
+        <input type="text" class="respuesta" data-correcta="chin">
+        <span class="feedback"></span>
+    </div>
+
+    <button id="btnVerificar">VERIFICAR</button>
+</div>
+
+<script>
+    // Usamos un método de detección de clic más robusto para móviles
+    document.getElementById('btnVerificar').addEventListener('click', function() {
+        var campos = document.querySelectorAll('.respuesta');
+        var avisos = document.querySelectorAll('.feedback');
+
+        for (var i = 0; i < campos.length; i++) {
+            var escrita = campos[i].value.trim().toLowerCase();
+            var correcta = campos[i].getAttribute('data-correcta');
+
+            if (escrita === correcta) {
+                avisos[i].innerText = "✓ OK";
+                avisos[i].style.color = "green";
+                campos[i].style.borderColor = "green";
+            } else {
+                avisos[i].innerText = "✗ No";
+                avisos[i].style.color = "red";
+                campos[i].style.borderColor = "red";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
