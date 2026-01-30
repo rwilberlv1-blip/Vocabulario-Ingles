@@ -3,98 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés</title>
+    <title>Reto: El Cuerpo Humano</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f2f2f7; padding: 20px; color: #000; }
-        .card { background: white; padding: 20px; border-radius: 15px; max-width: 400px; margin: auto; border: 1px solid #ccc; }
-        .row { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 16px; background: #007aff; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; margin-top: 10px; }
-        .status { font-weight: bold; margin-top: 5px; display: block; }
+        :root {
+            --primary: #5856d6; 
+            --secondary: #ff9500;
+            --success: #34c759;
+            --error: #ff3b30;
+            --bg: #f2f2f7;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: var(--bg); 
+            padding: 20px; 
+            color: #1c1c1e; 
+        }
+
+        .card { 
+            background: white; 
+            padding: 24px; 
+            border-radius: 25px; 
+            max-width: 500px; 
+            margin: auto; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        h2 { text-align: center; margin-bottom: 5px; color: #000; }
+        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 25px; font-size: 15px; }
+
+        /* DIAGRAMA */
+        .diagram-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 20px;
+        }
+
+        .body-svg { max-width: 100%; height: auto; display: block; margin: auto; }
+
+        /* FILAS DEL CUESTIONARIO */
+        .row-numbered { 
+            margin-bottom: 12px; 
+            display: grid;
+            grid-template-columns: 35px 95px 1fr; 
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: #f8f8fb;
+            border-radius: 12px;
+        }
+
+        .number-circle {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .spanish-label { font-weight: 600; color: #444; font-size: 15px; }
+
+        .input-group { position: relative; display: flex; align-items: center; }
+
+        input { 
+            width: 100%; 
+            padding: 10px 12px; 
+            font-size: 16px; 
+            border: 2px solid #e5e5ea; 
+            border-radius: 10px; 
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input:focus { border-color: var(--primary); background: #fff; }
+
+        .feedback { margin-left: 8px; font-size: 18px; min-width: 25px; }
+
+        /* BOTONES */
+        .buttons { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        button { 
+            padding: 16px; border: none; border-radius: 15px; 
+            font-weight: bold; font-size: 16px; cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        button:active { transform: scale(0.98); }
+
+        #btnVerificar { background: var(--primary); color: white; }
+        #btnReset { background: #e5e5ea; color: #3a3a3c; }
+
+        .score-board { 
+            text-align: center; margin-top: 25px; 
+            font-weight: bold; font-size: 18px; display: none; 
+        }
+
+        @media (max-width: 450px) {
+            .row-numbered { grid-template-columns: 30px 80px 1fr; gap: 8px; }
+            .spanish-label { font-size: 13px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2 style="text-align:center">EL CUERPO HUMANO</h2>
+    <h2>El Cuerpo Humano</h2>
+    <p class="subtitle">Escribe la traducción correcta al inglés</p>
     
-    <div class="row">
-        <label>Cabeza:</label>
-        <input type="text" class="respuesta" data-correcta="head">
-        <span class="feedback"></span>
+    <div class="diagram-container">
+        <svg class="body-svg" width="300" height="380" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L9,3 z" fill="var(--primary)" />
+                </marker>
+            </defs>
+            
+            <g fill="#FFDFC4">
+                <ellipse cx="160" cy="60" rx="35" ry="40"/> <rect x="145" y="95" width="30" height="10"/> <path d="M115 120 Q 80 160 95 200" stroke="#FFDFC4" stroke-width="18" fill="none" stroke-linecap="round"/> <path d="M205 120 Q 240 160 225 200" stroke="#FFDFC4" stroke-width="18" fill="none" stroke-linecap="round"/> <circle cx="95" cy="205" r="10"/> <circle cx="225" cy="205" r="10"/> <rect x="135" y="230" width="22" height="85" rx="8"/> <rect x="165" y="230" width="22" height="85" rx="8"/> </g>
+            <path d="M125 110 C 125 90, 195 90, 195 110 L 205 230 L 115 230 Z" fill="#4A90E2"/> <path d="M115 230 L 205 230 L 200 270 L 160 255 L 120 270 Z" fill="#5856d6"/> <ellipse cx="145" cy="320" rx="14" ry="8" fill="#333"/> <ellipse cx="175" cy="320" rx="14" ry="8" fill="#333"/> <style>.svg-num { font-weight: bold; font-family: sans-serif; fill: white; font-size: 13px; }</style>
+            <g stroke="var(--primary)" stroke-width="2" fill="none">
+                <line x1="160" y1="30" x2="80" y2="30" marker-end="url(#arrow)"/>
+                <circle cx="80" cy="30" r="12" fill="var(--primary)" stroke="none"/><text x="80" y="35" text-anchor="middle" class="svg-num" fill="white" stroke="none">1</text>
+
+                <line x1="105" y1="140" x2="50" y2="140" marker-end="url(#arrow)"/>
+                <circle cx="50" cy="140" r="12" fill="var(--primary)" stroke="none"/><text x="50" y="145" text-anchor="middle" class="svg-num" fill="white" stroke="none">4</text>
+
+                <line x1="225" y1="165" x2="275" y2="165" marker-end="url(#arrow)"/>
+                <circle cx="275" cy="165" r="12" fill="var(--primary)" stroke="none"/><text x="275" y="170" text-anchor="middle" class="svg-num" fill="white" stroke="none">2</text>
+
+                <line x1="225" y1="210" x2="275" y2="225" marker-end="url(#arrow)"/>
+                <circle cx="275" cy="225" r="12" fill="var(--primary)" stroke="none"/><text x="275" y="230" text-anchor="middle" class="svg-num" fill="white" stroke="none">3</text>
+
+                <line x1="135" y1="270" x2="80" y2="270" marker-end="url(#arrow)"/>
+                <circle cx="80" cy="270" r="12" fill="var(--primary)" stroke="none"/><text x="80" y="275" text-anchor="middle" class="svg-num" fill="white" stroke="none">5</text>
+
+                <path d="M145 285 L 50 310 M175 285 L 50 310" marker-start="url(#arrow)"/>
+                <circle cx="50" cy="310" r="12" fill="var(--primary)" stroke="none"/><text x="50" y="315" text-anchor="middle" class="svg-num" fill="white" stroke="none">6</text>
+
+                <path d="M145 320 L 270 310 M175 320 L 270 310" marker-start="url(#arrow)" stroke-dasharray="3,2"/>
+                <circle cx="270" cy="310" r="12" fill="var(--primary)" stroke="none"/><text x="270" y="315" text-anchor="middle" class="svg-num" fill="white" stroke="none">7</text>
+
+                <line x1="175" y1="330" x2="175" y2="370" marker-end="url(#arrow)"/>
+                <circle cx="175" cy="370" r="12" fill="var(--primary)" stroke="none"/><text x="175" y="375" text-anchor="middle" class="svg-num" fill="white" stroke="none">8</text>
+            </g>
+        </svg>
     </div>
 
-    <div class="row">
-        <label>Codo:</label>
-        <input type="text" class="respuesta" data-correcta="elbow">
-        <span class="feedback"></span>
+    <div id="quiz">
+        <div class="row-numbered">
+            <span class="number-circle">1</span>
+            <span class="spanish-label">Cabeza</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="head" placeholder="Inglés...">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">2</span>
+            <span class="spanish-label">Codo</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="elbow">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">3</span>
+            <span class="spanish-label">Mano</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="hand">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">4</span>
+            <span class="spanish-label">Brazo</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="arm">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">5</span>
+            <span class="spanish-label">Pierna</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="leg">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">6</span>
+            <span class="spanish-label">Rodillas</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="knees">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">7</span>
+            <span class="spanish-label">Pies</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="feet">
+                <span class="feedback"></span>
+            </div>
+        </div>
+
+        <div class="row-numbered">
+            <span class="number-circle">8</span>
+            <span class="spanish-label">Pie</span>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="foot">
+                <span class="feedback"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <label>Brazo:</label>
-        <input type="text" class="respuesta" data-correcta="arm">
-        <span class="feedback"></span>
-    </div>
+    <div class="score-board" id="score"></div>
 
-    <div class="row">
-        <label>Mano:</label>
-        <input type="text" class="respuesta" data-correcta="hand">
-        <span class="feedback"></span>
+    <div class="buttons">
+        <button id="btnReset">REINICIAR</button>
+        <button id="btnVerificar">VERIFICAR</button>
     </div>
-
-    <div class="row">
-        <label>Rodillas:</label>
-        <input type="text" class="respuesta" data-correcta="knees">
-        <span class="feedback"></span>
-    </div>
-
-    <div class="row">
-        <label>Pies:</label>
-        <input type="text" class="respuesta" data-correcta="feet">
-        <span class="feedback"></span>
-    </div>
-
-    <div class="row">
-        <label>Pierna:</label>
-        <input type="text" class="respuesta" data-correcta="leg">
-        <span class="feedback"></span>
-    </div>
-
-    <div class="row">
-        <label>Pie:</label>
-        <input type="text" class="respuesta" data-correcta="foot">
-        <span class="feedback"></span>
-    </div>
-
-    <button id="btnVerificar">VERIFICAR</button>
 </div>
 
 <script>
-    // Usamos un método de detección de clic más robusto para móviles
-    document.getElementById('btnVerificar').addEventListener('click', function() {
-        var campos = document.querySelectorAll('.respuesta');
-        var avisos = document.querySelectorAll('.feedback');
+    const btnVerificar = document.getElementById('btnVerificar');
+    const btnReset = document.getElementById('btnReset');
+    const campos = document.querySelectorAll('.respuesta');
+    const avisos = document.querySelectorAll('.feedback');
+    const scoreBoard = document.getElementById('score');
 
-        for (var i = 0; i < campos.length; i++) {
-            var escrita = campos[i].value.trim().toLowerCase();
-            var correcta = campos[i].getAttribute('data-correcta');
-
+    function verificar() {
+        let aciertos = 0;
+        campos.forEach((campo, i) => {
+            const escrita = campo.value.trim().toLowerCase();
+            const correcta = campo.getAttribute('data-correcta');
             if (escrita === correcta) {
-                avisos[i].innerText = "✓ OK";
-                avisos[i].style.color = "green";
-                campos[i].style.borderColor = "green";
+                avisos[i].innerText = "✅";
+                campo.style.borderColor = "var(--success)";
+                aciertos++;
             } else {
-                avisos[i].innerText = "✗ No";
-                avisos[i].style.color = "red";
-                campos[i].style.borderColor = "red";
+                avisos[i].innerText = "❌";
+                campo.style.borderColor = "var(--error)";
             }
-        }
-    });
+        });
+        scoreBoard.innerText = `Resultado: ${aciertos} de ${campos.length} correctas`;
+        scoreBoard.style.display = "block";
+        scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "var(--primary)";
+    }
+
+    function resetear() {
+        campos.forEach((campo, i) => {
+            campo.value = "";
+            campo.style.borderColor = "#e5e5ea";
+            avisos[i].innerText = "";
+        });
+        scoreBoard.style.display = "none";
+    }
+
+    btnVerificar.addEventListener('click', verificar);
+    btnReset.addEventListener('click', resetear);
+    document.addEventListener('keypress', (e) => { if (e.key === 'Enter') verificar(); });
 </script>
 
 </body>
 </html>
-
-
-
