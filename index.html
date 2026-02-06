@@ -3,227 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reto: El Cuerpo Humano</title>
+    <title>Repaso Inglés: Animals</title>
     <style>
         :root {
-            --primary: #5856d6; 
-            --secondary: #ff9500;
+            --primary: #007aff;
             --success: #34c759;
             --error: #ff3b30;
             --bg: #f2f2f7;
         }
 
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            font-family: -apple-system, sans-serif; 
             background: var(--bg); 
             padding: 20px; 
-            color: #1c1c1e; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card { 
             background: white; 
             padding: 24px; 
-            border-radius: 25px; 
+            border-radius: 20px; 
             max-width: 500px; 
-            margin: auto; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        h2 { text-align: center; margin-bottom: 5px; color: #000; }
-        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 25px; font-size: 15px; }
-
-        /* DIAGRAMA */
-        .diagram-container {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 10px;
-            background: #fafafa;
-            border-radius: 20px;
-        }
-
-        .body-svg { max-width: 100%; height: auto; display: block; margin: auto; }
-
-        /* FILAS DEL CUESTIONARIO */
-        .row-numbered { 
-            margin-bottom: 12px; 
+        .animal-grid {
             display: grid;
-            grid-template-columns: 35px 95px 1fr; 
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            background: #f8f8fb;
-            border-radius: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #f8f8fa;
+            padding: 15px;
+            border-radius: 15px;
         }
 
-        .number-circle {
-            background: var(--primary);
-            color: white;
+        .animal-item {
+            text-align: center;
             font-weight: bold;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
             font-size: 14px;
         }
 
-        .spanish-label { font-weight: 600; color: #444; font-size: 15px; }
+        .animal-img {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #eee;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px; /* Aquí irían los iconos o imágenes */
+            margin-bottom: 5px;
+        }
 
-        .input-group { position: relative; display: flex; align-items: center; }
+        h2 { text-align: center; margin-bottom: 20px; }
 
+        .row { margin-bottom: 12px; }
+        label { font-weight: 600; font-size: 13px; color: #8e8e93; display: block; margin-bottom: 5px; }
+
+        .input-group { display: flex; align-items: center; }
         input { 
-            width: 100%; 
-            padding: 10px 12px; 
+            flex: 1;
+            padding: 10px 15px; 
             font-size: 16px; 
             border: 2px solid #e5e5ea; 
             border-radius: 10px; 
             outline: none;
-            transition: all 0.2s;
         }
 
-        input:focus { border-color: var(--primary); background: #fff; }
-
-        .feedback { margin-left: 8px; font-size: 18px; min-width: 25px; }
-
-        /* BOTONES */
-        .buttons { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
+        .feedback { margin-left: 10px; font-weight: bold; width: 20px; }
+        .buttons { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        
         button { 
-            padding: 16px; border: none; border-radius: 15px; 
-            font-weight: bold; font-size: 16px; cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
+            padding: 15px; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            cursor: pointer;
         }
-        button:active { transform: scale(0.98); }
 
         #btnVerificar { background: var(--primary); color: white; }
         #btnReset { background: #e5e5ea; color: #3a3a3c; }
 
         .score-board { 
-            text-align: center; margin-top: 25px; 
-            font-weight: bold; font-size: 18px; display: none; 
-        }
-
-        @media (max-width: 450px) {
-            .row-numbered { grid-template-columns: 30px 80px 1fr; gap: 8px; }
-            .spanish-label { font-size: 13px; }
+            text-align: center; 
+            margin-top: 20px; 
+            font-weight: bold; 
+            display: none; 
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>El Cuerpo Humano</h2>
-    <p class="subtitle">Escribe la traducción correcta al inglés</p>
-    
-    <div class="diagram-container">
-        <svg class="body-svg" width="300" height="380" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L9,3 z" fill="var(--primary)" />
-                </marker>
-            </defs>
-            
-            <g fill="#FFDFC4">
-                <ellipse cx="160" cy="60" rx="35" ry="40"/> <rect x="145" y="95" width="30" height="10"/> <path d="M115 120 Q 80 160 95 200" stroke="#FFDFC4" stroke-width="18" fill="none" stroke-linecap="round"/> <path d="M205 120 Q 240 160 225 200" stroke="#FFDFC4" stroke-width="18" fill="none" stroke-linecap="round"/> <circle cx="95" cy="205" r="10"/> <circle cx="225" cy="205" r="10"/> <rect x="135" y="230" width="22" height="85" rx="8"/> <rect x="165" y="230" width="22" height="85" rx="8"/> </g>
-            <path d="M125 110 C 125 90, 195 90, 195 110 L 205 230 L 115 230 Z" fill="#4A90E2"/> <path d="M115 230 L 205 230 L 200 270 L 160 255 L 120 270 Z" fill="#5856d6"/> <ellipse cx="145" cy="320" rx="14" ry="8" fill="#333"/> <ellipse cx="175" cy="320" rx="14" ry="8" fill="#333"/> <style>.svg-num { font-weight: bold; font-family: sans-serif; fill: white; font-size: 13px; }</style>
-            <g stroke="var(--primary)" stroke-width="2" fill="none">
-                <line x1="160" y1="30" x2="80" y2="30" marker-end="url(#arrow)"/>
-                <circle cx="80" cy="30" r="12" fill="var(--primary)" stroke="none"/><text x="80" y="35" text-anchor="middle" class="svg-num" fill="white" stroke="none">1</text>
+    <h2>EN EL ZOO</h2>
 
-                <line x1="105" y1="140" x2="50" y2="140" marker-end="url(#arrow)"/>
-                <circle cx="50" cy="140" r="12" fill="var(--primary)" stroke="none"/><text x="50" y="145" text-anchor="middle" class="svg-num" fill="white" stroke="none">4</text>
-
-                <line x1="225" y1="165" x2="275" y2="165" marker-end="url(#arrow)"/>
-                <circle cx="275" cy="165" r="12" fill="var(--primary)" stroke="none"/><text x="275" y="170" text-anchor="middle" class="svg-num" fill="white" stroke="none">2</text>
-
-                <line x1="225" y1="210" x2="275" y2="225" marker-end="url(#arrow)"/>
-                <circle cx="275" cy="225" r="12" fill="var(--primary)" stroke="none"/><text x="275" y="230" text-anchor="middle" class="svg-num" fill="white" stroke="none">3</text>
-
-                <line x1="135" y1="270" x2="80" y2="270" marker-end="url(#arrow)"/>
-                <circle cx="80" cy="270" r="12" fill="var(--primary)" stroke="none"/><text x="80" y="275" text-anchor="middle" class="svg-num" fill="white" stroke="none">5</text>
-
-                <path d="M145 285 L 50 310 M175 285 L 50 310" marker-start="url(#arrow)"/>
-                <circle cx="50" cy="310" r="12" fill="var(--primary)" stroke="none"/><text x="50" y="315" text-anchor="middle" class="svg-num" fill="white" stroke="none">6</text>
-
-                <path d="M145 320 L 270 310 M175 320 L 270 310" marker-start="url(#arrow)" stroke-dasharray="3,2"/>
-                <circle cx="270" cy="310" r="12" fill="var(--primary)" stroke="none"/><text x="270" y="315" text-anchor="middle" class="svg-num" fill="white" stroke="none">7</text>
-
-                <line x1="175" y1="330" x2="175" y2="370" marker-end="url(#arrow)"/>
-                <circle cx="175" cy="370" r="12" fill="var(--primary)" stroke="none"/><text x="175" y="375" text-anchor="middle" class="svg-num" fill="white" stroke="none">8</text>
-            </g>
-        </svg>
+    <div class="animal-grid">
+        <div class="animal-item"><div class="animal-img">🐯</div>1</div>
+        <div class="animal-item"><div class="animal-img">🐸</div>2</div>
+        <div class="animal-item"><div class="animal-img">🐑</div>3</div>
+        <div class="animal-item"><div class="animal-img">🦆</div>4</div>
+        <div class="animal-item"><div class="animal-img">🐮</div>5</div>
+        <div class="animal-item"><div class="animal-img">🐐</div>6</div>
+        <div class="animal-item"><div class="animal-img">🦎</div>7</div>
+        <div class="animal-item"><div class="animal-img">🐔</div>8</div>
     </div>
 
     <div id="quiz">
-        <div class="row-numbered">
-            <span class="number-circle">1</span>
-            <span class="spanish-label">Cabeza</span>
+        <div class="row">
+            <label>1. Tigre</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="head" placeholder="Inglés...">
+                <input type="text" class="respuesta" data-correcta="tiger" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">2</span>
-            <span class="spanish-label">Codo</span>
+        <div class="row">
+            <label>2. Rana</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="elbow">
+                <input type="text" class="respuesta" data-correcta="frog" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">3</span>
-            <span class="spanish-label">Mano</span>
+        <div class="row">
+            <label>3. Oveja</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="hand">
+                <input type="text" class="respuesta" data-correcta="sheep" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">4</span>
-            <span class="spanish-label">Brazo</span>
+        <div class="row">
+            <label>4. Pato</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="arm">
+                <input type="text" class="respuesta" data-correcta="duck" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">5</span>
-            <span class="spanish-label">Pierna</span>
+        <div class="row">
+            <label>5. Vaca</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="leg">
+                <input type="text" class="respuesta" data-correcta="cow" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">6</span>
-            <span class="spanish-label">Rodillas</span>
+        <div class="row">
+            <label>6. Cabra</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="knees">
+                <input type="text" class="respuesta" data-correcta="goat" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">7</span>
-            <span class="spanish-label">Pies</span>
+        <div class="row">
+            <label>7. Lagarto</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="feet">
+                <input type="text" class="respuesta" data-correcta="lizard" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
-
-        <div class="row-numbered">
-            <span class="number-circle">8</span>
-            <span class="spanish-label">Pie</span>
+        <div class="row">
+            <label>8. Pollo</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="foot">
+                <input type="text" class="respuesta" data-correcta="chicken" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
@@ -232,7 +173,7 @@
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset">REINICIAR</button>
+        <button id="btnReset">LIMPIAR</button>
         <button id="btnVerificar">VERIFICAR</button>
     </div>
 </div>
@@ -249,18 +190,22 @@
         campos.forEach((campo, i) => {
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
+
             if (escrita === correcta) {
-                avisos[i].innerText = "✅";
+                avisos[i].innerText = "✓";
+                avisos[i].style.color = "var(--success)";
                 campo.style.borderColor = "var(--success)";
                 aciertos++;
             } else {
-                avisos[i].innerText = "❌";
+                avisos[i].innerText = "✗";
+                avisos[i].style.color = "var(--error)";
                 campo.style.borderColor = "var(--error)";
             }
         });
-        scoreBoard.innerText = `Resultado: ${aciertos} de ${campos.length} correctas`;
+
+        scoreBoard.innerText = `Logrado: ${aciertos} de ${campos.length}`;
         scoreBoard.style.display = "block";
-        scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "var(--primary)";
+        scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "#1c1c1e";
     }
 
     function resetear() {
@@ -274,7 +219,20 @@
 
     btnVerificar.addEventListener('click', verificar);
     btnReset.addEventListener('click', resetear);
-    document.addEventListener('keypress', (e) => { if (e.key === 'Enter') verificar(); });
+
+    // Navegar entre inputs con Enter
+    campos.forEach((campo, index) => {
+        campo.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (index < campos.length - 1) {
+                    campos[index + 1].focus();
+                } else {
+                    verificar();
+                }
+            }
+        });
+    });
 </script>
 
 </body>
