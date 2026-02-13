@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Animals</title>
+    <title>Repaso Inglés: Clothes Shop</title>
     <style>
         :root {
-            --primary: #007aff;
+            --primary: #ff9500;
             --success: #34c759;
             --error: #ff3b30;
             --bg: #f2f2f7;
@@ -30,35 +30,38 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .animal-grid {
+        .item-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             margin-bottom: 25px;
-            background: #f8f8fa;
+            background: #fff9f0;
             padding: 15px;
             border-radius: 15px;
+            border: 1px solid #ffe5cc;
         }
 
-        .animal-item {
+        .grid-item {
             text-align: center;
             font-weight: bold;
             font-size: 14px;
         }
 
-        .animal-img {
+        .item-img {
             width: 100%;
             aspect-ratio: 1;
-            background: #eee;
+            background: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px; /* Aquí irían los iconos o imágenes */
+            font-size: 24px;
             margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        h2 { text-align: center; margin-bottom: 20px; }
+        /* Ajustado el margen inferior para compensar la falta de subtítulo */
+        h2 { text-align: center; margin-bottom: 25px; color: #1c1c1e; }
 
         .row { margin-bottom: 12px; }
         label { font-weight: 600; font-size: 13px; color: #8e8e93; display: block; margin-bottom: 5px; }
@@ -71,7 +74,10 @@
             border: 2px solid #e5e5ea; 
             border-radius: 10px; 
             outline: none;
+            transition: all 0.2s;
         }
+
+        input:focus { border-color: var(--primary); }
 
         .feedback { margin-left: 10px; font-weight: bold; width: 20px; }
         .buttons { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -82,7 +88,10 @@
             border-radius: 12px; 
             font-weight: bold; 
             cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
         }
+
+        button:active { transform: scale(0.98); opacity: 0.9; }
 
         #btnVerificar { background: var(--primary); color: white; }
         #btnReset { background: #e5e5ea; color: #3a3a3c; }
@@ -92,79 +101,81 @@
             margin-top: 20px; 
             font-weight: bold; 
             display: none; 
+            padding: 15px;
+            border-radius: 12px;
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>EN EL ZOO</h2>
+    <h2>EN LA TIENDA DE ROPA</h2>
 
-    <div class="animal-grid">
-        <div class="animal-item"><div class="animal-img">🐯</div>1</div>
-        <div class="animal-item"><div class="animal-img">🐸</div>2</div>
-        <div class="animal-item"><div class="animal-img">🐑</div>3</div>
-        <div class="animal-item"><div class="animal-img">🦆</div>4</div>
-        <div class="animal-item"><div class="animal-img">🐮</div>5</div>
-        <div class="animal-item"><div class="animal-img">🐐</div>6</div>
-        <div class="animal-item"><div class="animal-img">🦎</div>7</div>
-        <div class="animal-item"><div class="animal-img">🐔</div>8</div>
+    <div class="item-grid">
+        <div class="grid-item"><div class="item-img">👓</div>1</div>
+        <div class="grid-item"><div class="item-img">🧢</div>2</div>
+        <div class="grid-item"><div class="item-img">🎒</div>3</div>
+        <div class="grid-item"><div class="item-img">🧥</div>4</div>
+        <div class="grid-item"><div class="item-img">👗👕👖</div>5</div>
+        <div class="grid-item"><div class="item-img">👗</div>6</div>
+        <div class="grid-item"><div class="item-img">👟</div>7</div>
+        <div class="grid-item"><div class="item-img">🧦</div>8</div>
     </div>
 
     <div id="quiz">
         <div class="row">
-            <label>1. Tigre</label>
+            <label>1. Gafas</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="tiger" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="glasses" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>2. Rana</label>
+            <label>2. Sombrero / Gorra</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="frog" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="hat" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>3. Oveja</label>
+            <label>3. Bolso / Mochila</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="sheep" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="bag" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>4. Pato</label>
+            <label>4. Chaqueta</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="duck" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="jacket" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>5. Vaca</label>
+            <label>5. Ropa</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="cow" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="clothes" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>6. Cabra</label>
+            <label>6. Falda</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="goat" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="skirt" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>7. Lagarto</label>
+            <label>7. Zapatos</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="lizard" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="shoes" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>8. Pollo</label>
+            <label>8. Calcetines</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="chicken" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="socks" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
@@ -203,9 +214,14 @@
             }
         });
 
-        scoreBoard.innerText = `Logrado: ${aciertos} de ${campos.length}`;
+        scoreBoard.innerText = `Puntuación: ${aciertos} de ${campos.length}`;
         scoreBoard.style.display = "block";
+        scoreBoard.style.background = aciertos === campos.length ? "#eafaf1" : "#fefefe";
         scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "#1c1c1e";
+        
+        if(aciertos === campos.length) {
+            scoreBoard.innerText = "¡Excelente! 👗✨ Todo correcto.";
+        }
     }
 
     function resetear() {
@@ -220,7 +236,6 @@
     btnVerificar.addEventListener('click', verificar);
     btnReset.addEventListener('click', resetear);
 
-    // Navegar entre inputs con Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -237,3 +252,4 @@
 
 </body>
 </html>
+
