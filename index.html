@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Clothes Shop</title>
+    <title>Repaso Inglés: Parts of the House</title>
     <style>
         :root {
-            --primary: #ff9500;
+            --primary: #007aff; /* Azul */
             --success: #34c759;
             --error: #ff3b30;
             --bg: #f2f2f7;
@@ -30,38 +30,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .item-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
-            background: #fff9f0;
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid #ffe5cc;
-        }
+        h2 { text-align: center; margin-bottom: 5px; color: #1c1c1e; }
+        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 15px; font-size: 14px; }
 
-        .grid-item {
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .item-img {
+        /* Estilos para la nueva imagen */
+        .house-image {
             width: 100%;
-            aspect-ratio: 1;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #e5e5ea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-
-        /* Ajustado el margen inferior para compensar la falta de subtítulo */
-        h2 { text-align: center; margin-bottom: 25px; color: #1c1c1e; }
 
         .row { margin-bottom: 12px; }
         label { font-weight: 600; font-size: 13px; color: #8e8e93; display: block; margin-bottom: 5px; }
@@ -109,73 +89,58 @@
 <body>
 
 <div class="card">
-    <h2>EN LA TIENDA DE ROPA</h2>
+    <h2>LAS PARTES DE LA CASA</h2>
+    <p class="subtitle">Observa la imagen y escribe los nombres en inglés</p>
 
-    <div class="item-grid">
-        <div class="grid-item"><div class="item-img">👓</div>1</div>
-        <div class="grid-item"><div class="item-img">🧢</div>2</div>
-        <div class="grid-item"><div class="item-img">🎒</div>3</div>
-        <div class="grid-item"><div class="item-img">🧥</div>4</div>
-        <div class="grid-item"><div class="item-img">👗👕👖</div>5</div>
-        <div class="grid-item"><div class="item-img">👗</div>6</div>
-        <div class="grid-item"><div class="item-img">👟</div>7</div>
-        <div class="grid-item"><div class="item-img">🧦</div>8</div>
-    </div>
+    <img src="image_2.png" alt="Plano de la casa con partes en español" class="house-image">
 
     <div id="quiz">
         <div class="row">
-            <label>1. Gafas</label>
+            <label>Comedor</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="glasses" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="dining room" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>2. Sombrero / Gorra</label>
+            <label>Recibidor</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="hat" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="hall" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>3. Bolso / Mochila</label>
+            <label>Salón</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="bag" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="living room" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>4. Chaqueta</label>
+            <label>Dormitorio</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="jacket" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="bedroom" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>5. Ropa</label>
+            <label>Jardín</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="clothes" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="garden" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>6. Falda</label>
+            <label>Baño</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="skirt" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="bathroom" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>7. Zapatos</label>
+            <label>Cocina</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="shoes" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>8. Calcetines</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="socks" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="kitchen" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
@@ -199,10 +164,11 @@
     function verificar() {
         let aciertos = 0;
         campos.forEach((campo, i) => {
+            // Usamos trim() para quitar espacios extra y toLowerCase() para ignorar mayúsculas
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
 
-            if (escrita === correcta) {
+            if (escrita === correcta && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
                 campo.style.borderColor = "var(--success)";
@@ -220,7 +186,7 @@
         scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "#1c1c1e";
         
         if(aciertos === campos.length) {
-            scoreBoard.innerText = "¡Excelente! 👗✨ Todo correcto.";
+            scoreBoard.innerText = "¡Perfecto! 🏠✨ Excellent job!";
         }
     }
 
@@ -236,6 +202,7 @@
     btnVerificar.addEventListener('click', verificar);
     btnReset.addEventListener('click', resetear);
 
+    // Funcionalidad para saltar al siguiente campo con "Enter"
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -252,4 +219,3 @@
 
 </body>
 </html>
-
