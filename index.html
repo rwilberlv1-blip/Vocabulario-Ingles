@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Parts of the House</title>
+    <title>Repaso Inglés: Family Members</title>
     <style>
         :root {
-            --primary: #007aff; /* Azul */
+            --primary: #007aff; /* Azul para diferenciarlo de los otros niveles */
             --success: #34c759;
             --error: #ff3b30;
             --bg: #f2f2f7;
@@ -33,7 +33,7 @@
         h2 { text-align: center; margin-bottom: 5px; color: #1c1c1e; }
         p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 15px; font-size: 14px; }
 
-        /* Estilos para la nueva imagen */
+        /* Estilos para la imagen central */
         .house-image {
             width: 100%;
             height: auto;
@@ -89,58 +89,65 @@
 <body>
 
 <div class="card">
-    <h2>LAS PARTES DE LA CASA</h2>
+    <h2>MIEMBROS DE LA FAMILIA</h2>
     <p class="subtitle">Observa la imagen y escribe los nombres en inglés</p>
 
-    <img src="image_2.png" alt="Plano de la casa con partes en español" class="house-image">
+    <img src="miembros_familia.png" alt="Árbol genealógico ilustrado con miembros de la familia" class="house-image">
 
     <div id="quiz">
         <div class="row">
-            <label>Comedor</label>
+            <label>1. Hija</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="dining room" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="daughter" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Recibidor</label>
+            <label>2. Padre</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="hall" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="father" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Salón</label>
+            <label>3. Madre</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="living room" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="mother" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Dormitorio</label>
+            <label>4. Padres</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="bedroom" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="parents" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Jardín</label>
+            <label>5. Hijo</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="garden" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="son" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Baño</label>
+            <label>6. Abuela</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="bathroom" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="grandmother" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
         <div class="row">
-            <label>Cocina</label>
+            <label>7. Abuelo</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="kitchen" placeholder="English...">
+                <input type="text" class="respuesta" data-correcta="grandfather" placeholder="English...">
+                <span class="feedback"></span>
+            </div>
+        </div>
+        <div class="row">
+            <label>8. Primo</label>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="cousin" placeholder="English...">
                 <span class="feedback"></span>
             </div>
         </div>
@@ -186,7 +193,7 @@
         scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "#1c1c1e";
         
         if(aciertos === campos.length) {
-            scoreBoard.innerText = "¡Perfecto! 🏠✨ Excellent job!";
+            scoreBoard.innerText = "¡Perfecto! 👨‍👩‍👧‍👦✨ Excellent job!";
         }
     }
 
