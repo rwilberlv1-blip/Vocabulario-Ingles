@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Family Members</title>
+    <title>Repaso Inglés: Objetos de la Escuela</title>
     <style>
         :root {
-            --primary: #007aff; /* Azul para diferenciarlo de los otros niveles */
+            --primary: #FF9F43; 
             --success: #34c759;
             --error: #ff3b30;
-            --bg: #f2f2f7;
+            --bg: #f4f4f9;
         }
 
         body { 
-            font-family: -apple-system, sans-serif; 
+            font-family: -apple-system, system-ui, sans-serif;
             background: var(--bg); 
             padding: 20px; 
             display: flex;
@@ -25,191 +25,196 @@
             background: white; 
             padding: 24px; 
             border-radius: 20px; 
-            max-width: 500px; 
+            max-width: 600px; 
             width: 100%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         h2 { text-align: center; margin-bottom: 5px; color: #1c1c1e; }
-        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 15px; font-size: 14px; }
+        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 20px; }
 
-        /* Estilos para la imagen central */
-        .house-image {
+        .school-image-container {
             width: 100%;
-            height: auto;
             border-radius: 15px;
             margin-bottom: 25px;
+            overflow: hidden;
             border: 1px solid #e5e5ea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: #eee;
         }
 
-        .row { margin-bottom: 12px; }
-        label { font-weight: 600; font-size: 13px; color: #8e8e93; display: block; margin-bottom: 5px; }
+        .school-image { width: 100%; height: auto; display: block; }
 
-        .input-group { display: flex; align-items: center; }
-        input { 
-            flex: 1;
-            padding: 10px 15px; 
-            font-size: 16px; 
+        #quiz {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 500px) { #quiz { grid-template-columns: 1fr; } }
+
+        .row { margin-bottom: 5px; }
+        label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 4px; }
+        .spanish-word { color: #8e8e93; font-style: italic; font-weight: normal; }
+
+        .input-group { 
+            display: flex; 
+            align-items: center; 
+            background: #fafafa;
             border: 2px solid #e5e5ea; 
             border-radius: 10px; 
-            outline: none;
             transition: all 0.2s;
         }
 
-        input:focus { border-color: var(--primary); }
+        .input-group:focus-within { 
+            border-color: var(--primary); 
+            background: white; 
+        }
 
-        .feedback { margin-left: 10px; font-weight: bold; width: 20px; }
-        .buttons { margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        input { 
+            flex: 1;
+            padding: 12px; 
+            font-size: 16px; 
+            border: none; 
+            outline: none;
+            background: transparent;
+            width: 100%;
+        }
+
+        .feedback { margin: 0 10px; font-weight: bold; width: 20px; text-align: center; }
+
+        .buttons { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
-        button { 
-            padding: 15px; 
+        button.main-btn { 
+            padding: 16px; 
             border: none; 
             border-radius: 12px; 
             font-weight: bold; 
             cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
+            text-transform: uppercase;
+            font-size: 14px;
         }
-
-        button:active { transform: scale(0.98); opacity: 0.9; }
 
         #btnVerificar { background: var(--primary); color: white; }
         #btnReset { background: #e5e5ea; color: #3a3a3c; }
 
         .score-board { 
             text-align: center; 
-            margin-top: 20px; 
-            font-weight: bold; 
-            display: none; 
+            margin-top: 25px; 
             padding: 15px;
             border-radius: 12px;
+            display: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>MIEMBROS DE LA FAMILIA</h2>
-    <p class="subtitle">Observa la imagen y escribe los nombres en inglés</p>
+    <h2>EN LA ESCUELA</h2>
+    <p class="subtitle">Escribe en inglés. ¡Si aciertas, escucharás la palabra! 🎧</p>
 
-    <img src="miembros_familia.png" alt="Árbol genealógico ilustrado con miembros de la familia" class="house-image">
-
-    <div id="quiz">
-        <div class="row">
-            <label>1. Hija</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="daughter" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>2. Padre</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="father" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>3. Madre</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="mother" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>4. Padres</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="parents" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>5. Hijo</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="son" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>6. Abuela</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="grandmother" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>7. Abuelo</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="grandfather" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
-        <div class="row">
-            <label>8. Primo</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="cousin" placeholder="English...">
-                <span class="feedback"></span>
-            </div>
-        </div>
+    <div class="school-image-container">
+        <img src="escuela.png" 
+             onerror="this.src='https://i.imgur.com/8Qj8j9v.png'" 
+             alt="Objetos escolares" 
+             class="school-image">
     </div>
+
+    <div id="quiz"></div>
 
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset">LIMPIAR</button>
-        <button id="btnVerificar">VERIFICAR</button>
+        <button id="btnReset" class="main-btn">LIMPIAR</button>
+        <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    const btnVerificar = document.getElementById('btnVerificar');
-    const btnReset = document.getElementById('btnReset');
+    // Lista de palabras actualizada: Mesa -> Escritorio (desk)
+    const palabras = [
+        { es: "Escritorio", en: "desk" },
+        { es: "Silla", en: "chair" },
+        { es: "Libro", en: "book" },
+        { es: "Regla", en: "ruler" },
+        { es: "Bolígrafo", en: "pen" },
+        { es: "Lápiz", en: "pencil" },
+        { es: "Goma", en: "rubber" }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    const scoreBoard = document.getElementById('score');
+
+    // Función de voz
+    function pronunciar(texto) {
+        const msg = new SpeechSynthesisUtterance(texto);
+        msg.lang = 'en-US'; 
+        msg.rate = 0.85; 
+        window.speechSynthesis.speak(msg);
+    }
+
+    // Generar el HTML de las preguntas
+    palabras.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'row';
+        div.innerHTML = `
+            <label>${i+1}. <span class="spanish-word">(${p.es})</span></label>
+            <div class="input-group">
+                <input type="text" class="respuesta" data-correcta="${p.en}" placeholder="..." autocomplete="off">
+                <span class="feedback"></span>
+            </div>
+        `;
+        quizContainer.appendChild(div);
+    });
+
     const campos = document.querySelectorAll('.respuesta');
     const avisos = document.querySelectorAll('.feedback');
-    const scoreBoard = document.getElementById('score');
 
     function verificar() {
         let aciertos = 0;
         campos.forEach((campo, i) => {
-            // Usamos trim() para quitar espacios extra y toLowerCase() para ignorar mayúsculas
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
 
             if (escrita === correcta && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
-                campo.style.borderColor = "var(--success)";
+                campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
+                // Sonido solo si es correcta
+                pronunciar(correcta);
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
-                campo.style.borderColor = "var(--error)";
+                campo.parentElement.style.borderColor = "var(--error)";
             }
         });
 
-        scoreBoard.innerText = `Puntuación: ${aciertos} de ${campos.length}`;
         scoreBoard.style.display = "block";
-        scoreBoard.style.background = aciertos === campos.length ? "#eafaf1" : "#fefefe";
-        scoreBoard.style.color = aciertos === campos.length ? "var(--success)" : "#1c1c1e";
-        
-        if(aciertos === campos.length) {
-            scoreBoard.innerText = "¡Perfecto! 👨‍👩‍👧‍👦✨ Excellent job!";
+        if (aciertos === campos.length) {
+            scoreBoard.innerText = "¡Excelente! 🌟 Vocabulario completado.";
+            scoreBoard.style.background = "#eafaf1";
+            scoreBoard.style.color = "var(--success)";
+        } else {
+            scoreBoard.innerText = `Aciertos: ${aciertos} de ${campos.length}`;
+            scoreBoard.style.background = "#fff1f0";
+            scoreBoard.style.color = "var(--error)";
         }
     }
 
-    function resetear() {
-        campos.forEach((campo, i) => {
-            campo.value = "";
-            campo.style.borderColor = "#e5e5ea";
-            avisos[i].innerText = "";
+    // Botones de control
+    document.getElementById('btnVerificar').addEventListener('click', verificar);
+    
+    document.getElementById('btnReset').addEventListener('click', () => {
+        campos.forEach(c => {
+            c.value = "";
+            c.parentElement.style.borderColor = "#e5e5ea";
         });
+        avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
-    }
+    });
 
-    btnVerificar.addEventListener('click', verificar);
-    btnReset.addEventListener('click', resetear);
-
-    // Funcionalidad para saltar al siguiente campo con "Enter"
+    // Navegación con Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
