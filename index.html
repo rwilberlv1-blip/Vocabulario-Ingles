@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Objetos de la Escuela</title>
+    <title>Repaso Inglés: Los Colores Mágicos</title>
     <style>
         :root {
-            --primary: #FF9F43; 
-            --success: #34c759;
-            --error: #ff3b30;
-            --bg: #f4f4f9;
+            --primary: #9b59b6; /* Morado "mágico" */
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --bg: #f0f3f5;
         }
 
         body { 
-            font-family: -apple-system, system-ui, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg); 
             padding: 20px; 
             display: flex;
@@ -23,26 +23,38 @@
 
         .card { 
             background: white; 
-            padding: 24px; 
-            border-radius: 20px; 
-            max-width: 600px; 
+            padding: 25px; 
+            border-radius: 30px; 
+            max-width: 700px; 
             width: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 4px solid #f1c40f; /* Borde amarillo divertido */
         }
 
-        h2 { text-align: center; margin-bottom: 5px; color: #1c1c1e; }
-        p.subtitle { text-align: center; color: #8e8e93; margin-bottom: 20px; }
+        h2 { 
+            text-align: center; 
+            margin-bottom: 5px; 
+            color: #2c3e50;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
 
-        .school-image-container {
+        p.subtitle { 
+            text-align: center; 
+            color: #7f8c8d; 
+            margin-bottom: 20px; 
+            font-weight: 500;
+        }
+
+        .image-container {
             width: 100%;
-            border-radius: 15px;
+            border-radius: 20px;
             margin-bottom: 25px;
             overflow: hidden;
-            border: 1px solid #e5e5ea;
-            background: #eee;
+            border: 2px solid #ecf0f1;
         }
 
-        .school-image { width: 100%; height: auto; display: block; }
+        .main-image { width: 100%; height: auto; display: block; }
 
         #quiz {
             display: grid;
@@ -50,34 +62,45 @@
             gap: 15px;
         }
 
-        @media (max-width: 500px) { #quiz { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
 
-        .row { margin-bottom: 5px; }
-        label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 4px; }
-        .spanish-word { color: #8e8e93; font-style: italic; font-weight: normal; }
+        .row { 
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+
+        label { 
+            font-weight: bold; 
+            font-size: 14px; 
+            display: block; 
+            margin-bottom: 5px;
+            color: #34495e;
+        }
+
+        .pj-name { color: var(--primary); font-size: 12px; }
 
         .input-group { 
             display: flex; 
             align-items: center; 
-            background: #fafafa;
-            border: 2px solid #e5e5ea; 
+            background: white;
+            border: 2px solid #dcdde1; 
             border-radius: 10px; 
-            transition: all 0.2s;
+            transition: 0.3s;
         }
 
-        .input-group:focus-within { 
-            border-color: var(--primary); 
-            background: white; 
-        }
+        .input-group:focus-within { border-color: var(--primary); }
 
         input { 
             flex: 1;
-            padding: 12px; 
+            padding: 10px; 
             font-size: 16px; 
             border: none; 
             outline: none;
             background: transparent;
             width: 100%;
+            font-weight: 600;
         }
 
         .feedback { margin: 0 10px; font-weight: bold; width: 20px; text-align: center; }
@@ -85,39 +108,43 @@
         .buttons { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
         button.main-btn { 
-            padding: 16px; 
+            padding: 15px; 
             border: none; 
-            border-radius: 12px; 
+            border-radius: 15px; 
             font-weight: bold; 
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; }
-        #btnReset { background: #e5e5ea; color: #3a3a3c; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #8e44ad; }
+        #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
+        
+        #btnReset { background: #bdc3c7; color: white; box-shadow: 0 4px 0 #95a5a6; }
+        #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
             text-align: center; 
             margin-top: 25px; 
             padding: 15px;
-            border-radius: 12px;
+            border-radius: 15px;
             display: none;
-            font-weight: bold;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>EN LA ESCUELA</h2>
-    <p class="subtitle">Escribe en inglés. ¡Si aciertas, escucharás la palabra! 🎧</p>
+    <h2>🌈 LOS COLORES MÁGICOS</h2>
+    <p class="subtitle">Escribe el color en inglés. ¡Si aciertas, lo escucharás! 🔊</p>
 
-    <div class="school-image-container">
-        <img src="escuela.png" 
-             onerror="this.src='https://i.imgur.com/8Qj8j9v.png'" 
-             alt="Objetos escolares" 
-             class="school-image">
+    <div class="image-container">
+        <img src="colores.png" 
+             onerror="this.src='https://i.imgur.com/k6lP09B.png'" 
+             alt="Personajes y colores" 
+             class="main-image">
     </div>
 
     <div id="quiz"></div>
@@ -125,21 +152,24 @@
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">LIMPIAR</button>
+        <button id="btnReset" class="main-btn">BORRAR TODO</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Lista de palabras actualizada: Mesa -> Escritorio (desk)
-    const palabras = [
-        { es: "Escritorio", en: "desk" },
-        { es: "Silla", en: "chair" },
-        { es: "Libro", en: "book" },
-        { es: "Regla", en: "ruler" },
-        { es: "Bolígrafo", en: "pen" },
-        { es: "Lápiz", en: "pencil" },
-        { es: "Goma", en: "rubber" }
+    // Datos basados en la imagen enviada
+    const colores = [
+        { es: "Rojo", en: "red", pj: "Elmo" },
+        { es: "Naranja", en: "orange", pj: "Tigger" },
+        { es: "Amarillo", en: "yellow", pj: "Pikachu" },
+        { es: "Verde", en: "green", pj: "Yoshi" },
+        { es: "Azul", en: "blue", pj: "Sonic" },
+        { es: "Blanco", en: "white", pj: "Olaf" },
+        { es: "Negro", en: "black", pj: "Pato Lucas" },
+        { es: "Marrón", en: "brown", pj: "Scooby-Doo" },
+        { es: "Rosa", en: "pink", pj: "Pink Panther" },
+        { es: "Morado", en: "purple", pj: "Barney" }
     ];
 
     const quizContainer = document.getElementById('quiz');
@@ -149,18 +179,18 @@
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
-        msg.rate = 0.85; 
+        msg.rate = 0.8; 
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar el HTML de las preguntas
-    palabras.forEach((p, i) => {
+    // Generar inputs
+    colores.forEach((c, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
-            <label>${i+1}. <span class="spanish-word">(${p.es})</span></label>
+            <label>${c.es} <span class="pj-name">(${c.pj})</span></label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="${p.en}" placeholder="..." autocomplete="off">
+                <input type="text" class="respuesta" data-correcta="${c.en}" placeholder="..." autocomplete="off">
                 <span class="feedback"></span>
             </div>
         `;
@@ -181,8 +211,7 @@
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                // Sonido solo si es correcta
-                pronunciar(correcta);
+                pronunciar(correcta); // Suena al acertar
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -192,29 +221,28 @@
 
         scoreBoard.style.display = "block";
         if (aciertos === campos.length) {
-            scoreBoard.innerText = "¡Excelente! 🌟 Vocabulario completado.";
+            scoreBoard.innerText = "¡ERES UN GENIO! 🏆 ¡Dominas los colores!";
             scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `Aciertos: ${aciertos} de ${campos.length}`;
+            scoreBoard.innerText = `¡Sigue intentando! Has logrado ${aciertos} de ${campos.length}`;
             scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
-    // Botones de control
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
         campos.forEach(c => {
             c.value = "";
-            c.parentElement.style.borderColor = "#e5e5ea";
+            c.parentElement.style.borderColor = "#dcdde1";
         });
         avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
     });
 
-    // Navegación con Enter
+    // Pasar al siguiente con Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
