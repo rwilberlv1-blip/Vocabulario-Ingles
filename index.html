@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Días de la Semana</title>
+    <title>Repaso Inglés: Medios de Transporte</title>
     <style>
         :root {
-            --primary: #007bff; /* Azul brillante y alegre */
+            --primary: #3498db; /* Azul transporte */
             --success: #2ecc71;
             --error: #e74c3c;
-            --bg: #f8f9fa;
+            --bg: #fdfdfd;
         }
 
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg); 
+            background: #eef2f3; 
             padding: 20px; 
             display: flex;
             flex-direction: column;
@@ -25,10 +25,10 @@
             background: white; 
             padding: 25px; 
             border-radius: 30px; 
-            max-width: 700px; 
+            max-width: 800px; 
             width: 100%;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 4px solid #f1c40f; /* Borde amarillo divertido */
+            border: 4px solid var(--primary);
         }
 
         h2 { 
@@ -36,7 +36,6 @@
             margin-bottom: 5px; 
             color: #2c3e50;
             text-transform: uppercase;
-            font-size: 24px;
         }
 
         p.subtitle { 
@@ -65,8 +64,8 @@
         @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
 
         .row { 
-            background: #fafafa;
-            padding: 10px;
+            background: #f9f9f9;
+            padding: 12px;
             border-radius: 15px;
             border: 1px solid #eee;
         }
@@ -79,7 +78,7 @@
             color: #34495e;
         }
 
-        .spanish-word { color: var(--primary); font-size: 12px; }
+        .desc { color: #95a5a6; font-size: 11px; font-style: italic; }
 
         .input-group { 
             display: flex; 
@@ -114,14 +113,13 @@
             font-weight: bold; 
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #0056b3; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #2980b9; }
         #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
         
-        #btnReset { background: #bdc3c7; color: white; box-shadow: 0 4px 0 #95a5a6; }
+        #btnReset { background: #95a5a6; color: white; box-shadow: 0 4px 0 #7f8c8d; }
         #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
@@ -131,19 +129,19 @@
             border-radius: 15px;
             display: none;
             font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2>🌈 DÍAS DE LA SEMANA / DAYS OF THE WEEK</h2>
-    <p class="subtitle">Escribe el día en inglés. ¡Si aciertas, lo escucharás! 🔊</p>
+    <h2>🚀 MEDIOS DE TRANSPORTE</h2>
+    <p class="subtitle">Escribe el nombre en inglés. ¡Escucharás la palabra al acertar! 🔊</p>
 
     <div class="image-container">
-        <img src="dias_de_la_semana.png" 
-             onerror="this.src='https://i.imgur.com/8Fk7C5P.png'" 
-             alt="Días de la semana y actividades" 
+        <img src="transportes.png" 
+             alt="Medios de transporte educativos" 
              class="main-image">
     </div>
 
@@ -152,27 +150,29 @@
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">BORRAR TODO</button>
+        <button id="btnReset" class="main-btn">LIMPIAR</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Datos basados en la imagen enviada, con actividades abreviadas
-    const dias_de_la_semana = [
-        { es: "Lunes", en: "monday", actividad: "ir a la escuela" },
-        { es: "Martes", en: "tuesday", actividad: "pintar un cuadro" },
-        { es: "Miércoles", en: "wednesday", actividad: "cantar canciones" },
-        { es: "Jueves", en: "thursday", actividad: "correr en el parque" },
-        { es: "Viernes", en: "friday", actividad: "leer un cuento" },
-        { es: "Sábado", en: "saturday", actividad: "montar en bici" },
-        { es: "Domingo", en: "sunday", actividad: "cocinar galletas" }
+    // Datos basados en la segunda imagen proporcionada
+    const transportes = [
+        { es: "Avión", en: "airplane", desc: "Vuela por el aire" },
+        { es: "Coche", en: "car", desc: "Nos lleva de viaje" },
+        { es: "Moto", en: "motorbike", desc: "Es rápida" },
+        { es: "Tren", en: "train", desc: "Va por las vías" },
+        { es: "Barco", en: "boat", desc: "Navega por el mar" },
+        { es: "Bicicleta", en: "bicycle", desc: "Montamos en bici" },
+        { es: "Helicóptero", en: "helicopter", desc: "Rescata personas" },
+        { es: "Submarino", en: "submarine", desc: "Va bajo el agua" },
+        { es: "Camión", en: "truck", desc: "Transporta mercancías" },
+        { es: "Autobús", en: "bus", desc: "Nos lleva al cole" }
     ];
 
     const quizContainer = document.getElementById('quiz');
     const scoreBoard = document.getElementById('score');
 
-    // Función de voz optimizada
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
@@ -180,14 +180,13 @@
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar inputs para los días
-    dias_de_la_semana.forEach((d, i) => {
+    transportes.forEach((t, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
-            <label>${i+1}. ${d.es} <span class="spanish-word">(${d.actividad})</span></label>
+            <label>${i+1}. ${t.es} <span class="desc">(${t.desc})</span></label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="${d.en}" placeholder="..." autocomplete="off">
+                <input type="text" class="respuesta" data-correcta="${t.en}" placeholder="..." autocomplete="off">
                 <span class="feedback"></span>
             </div>
         `;
@@ -208,7 +207,7 @@
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                pronunciar(correcta); // Suena automáticamente al acertar
+                pronunciar(correcta);
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -218,17 +217,16 @@
 
         scoreBoard.style.display = "block";
         if (aciertos === campos.length) {
-            scoreBoard.innerText = "¡IMPRESIONANTE! 🤩 ¡Te sabes todos los días de la semana!";
+            scoreBoard.innerText = "¡FANTÁSTICO! 🏁 ¡Eres un experto en transportes!";
             scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `¡Sigue practicando! Has logrado ${aciertos} de ${campos.length}`;
+            scoreBoard.innerText = `Aciertos: ${aciertos} de ${campos.length}`;
             scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
-    // Botones de control
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
@@ -240,7 +238,6 @@
         scoreBoard.style.display = "none";
     });
 
-    // Navegación con Enter para saltar de campo
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -248,7 +245,7 @@
                 if (index < campos.length - 1) {
                     campos[index + 1].focus();
                 } else {
-                    verificar(); // Si es el último, verifica todo
+                    verificar();
                 }
             }
         });
