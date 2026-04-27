@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Objetos del Comedor</title>
+    <title>Repaso Inglés: My Favourite Food</title>
     <style>
         :root {
-            --primary: #e67e22; /* Color naranja zanahoria para el comedor */
-            --success: #2ecc71;
-            --error: #e74c3c;
-            --bg: #fdfaf6;
+            --primary: #FF7675; /* Color coral suave para comida */
+            --success: #55E6C1;
+            --error: #FF4D4D;
+            --bg: #F9F9FB;
         }
 
         body { 
@@ -27,21 +27,21 @@
             border-radius: 30px; 
             max-width: 750px; 
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 4px solid #f39c12; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 4px solid #FDCB6E; /* Borde amarillo sol */
         }
 
         h2 { 
             text-align: center; 
             margin-bottom: 5px; 
-            color: #2c3e50;
+            color: #2D3436;
             text-transform: uppercase;
             font-size: 24px;
         }
 
         p.subtitle { 
             text-align: center; 
-            color: #7f8c8d; 
+            color: #636E72; 
             margin-bottom: 20px; 
             font-weight: 500;
         }
@@ -51,7 +51,7 @@
             border-radius: 20px;
             margin-bottom: 25px;
             overflow: hidden;
-            border: 2px solid #ecf0f1;
+            border: 2px solid #DFE6E9;
         }
 
         .main-image { width: 100%; height: auto; display: block; }
@@ -65,10 +65,10 @@
         @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
 
         .row { 
-            background: #fff9f0;
-            padding: 10px;
+            background: #FFFBF0;
+            padding: 12px;
             border-radius: 15px;
-            border: 1px solid #ffeaa7;
+            border: 1px solid #FFEAA7;
         }
 
         label { 
@@ -76,14 +76,14 @@
             font-size: 14px; 
             display: block; 
             margin-bottom: 5px;
-            color: #d35400;
+            color: #2D3436;
         }
 
         .input-group { 
             display: flex; 
             align-items: center; 
             background: white;
-            border: 2px solid #fab1a0; 
+            border: 2px solid #FAB1A0; 
             border-radius: 10px; 
             transition: 0.3s;
         }
@@ -116,10 +116,10 @@
             transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #d35400; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #E17055; }
         #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
         
-        #btnReset { background: #bdc3c7; color: white; box-shadow: 0 4px 0 #95a5a6; }
+        #btnReset { background: #B2BEC3; color: white; box-shadow: 0 4px 0 #636E72; }
         #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
@@ -136,13 +136,13 @@
 <body>
 
 <div class="card">
-    <h2>🍽️ OBJETOS DEL COMEDOR</h2>
+    <h2>🍎 MY FAVOURITE FOOD</h2>
     <p class="subtitle">Escribe la palabra en inglés. ¡Escúchala al acertar! 🔊</p>
 
     <div class="image-container">
-        <img src="comedor.png" 
-             onerror="this.src='https://i.imgur.com/v9Y7S3n.png'" 
-             alt="Objetos del comedor" 
+        <img src="food.png" 
+             onerror="this.src='https://i.imgur.com/vHqB5zZ.png'" 
+             alt="Mi comida favorita" 
              class="main-image">
     </div>
 
@@ -151,28 +151,28 @@
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">BORRAR TODO</button>
+        <button id="btnReset" class="main-btn">LIMPIAR TODO</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Vocabulario extraído de la imagen proporcionada
-    const objetos = [
-        { es: "Tenedor", en: "fork" },
-        { es: "Cuchara", en: "spoon" },
-        { es: "Cuchillo", en: "knife" },
-        { es: "Vaso", en: "glass" },
-        { es: "Botella", en: "bottle" },
-        { es: "Silla", en: "chair" },
-        { es: "Mesa", en: "table" },
-        { es: "Tijeras", en: "scissors" }
+    // Vocabulario basado exactamente en las etiquetas de la imagen
+    const comida = [
+        { es: "Frutas", en: "fruits" },
+        { es: "Pan", en: "bread" },
+        { es: "Verduras", en: "vegetables" },
+        { es: "Agua", en: "water" },
+        { es: "Leche", en: "milk" },
+        { es: "Carne", en: "meat" },
+        { es: "Pescado", en: "fish" },
+        { es: "Huevo", en: "egg" }
     ];
 
     const quizContainer = document.getElementById('quiz');
     const scoreBoard = document.getElementById('score');
 
-    // Función de voz
+    // Función de voz (Pronunciación en inglés)
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
@@ -180,14 +180,14 @@
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar inputs automáticamente
-    objetos.forEach((obj, i) => {
+    // Generar los campos de respuesta automáticamente
+    comida.forEach((item, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
-            <label>${i+1}. ${obj.es}</label>
+            <label>${i+1}. ${item.es}</label>
             <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="${obj.en}" placeholder="..." autocomplete="off">
+                <input type="text" class="respuesta" data-correcta="${item.en}" placeholder="..." autocomplete="off">
                 <span class="feedback"></span>
             </div>
         `;
@@ -208,7 +208,8 @@
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                pronunciar(correcta); // Suena solo si es correcta
+                // Pronunciar solo si la respuesta es correcta
+                pronunciar(correcta);
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -217,29 +218,30 @@
         });
 
         scoreBoard.style.display = "block";
-        if (aciertos === objetos.length) {
-            scoreBoard.innerText = "¡BUEN PROVECHO! 🍴 ¡Lo has hecho genial!";
-            scoreBoard.style.background = "#eafaf1";
+        if (aciertos === comida.length) {
+            scoreBoard.innerText = "¡YUMMY! 😋 ¡Lo has hecho perfecto!";
+            scoreBoard.style.background = "#EAFBF4";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `Has acertado ${aciertos} de ${objetos.length}`;
-            scoreBoard.style.background = "#fff1f0";
+            scoreBoard.innerText = `¡Sigue así! Has logrado ${aciertos} de ${comida.length}`;
+            scoreBoard.style.background = "#FFF5F5";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
+    // Eventos de los botones
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
         campos.forEach(c => {
             c.value = "";
-            c.parentElement.style.borderColor = "#fab1a0";
+            c.parentElement.style.borderColor = "#FAB1A0";
         });
         avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
     });
 
-    // Enter para saltar de campo
+    // Navegación con tecla Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
