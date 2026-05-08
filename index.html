@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Transports</title>
+    <title>English: Writing Project - En la Oficina</title>
     <style>
         :root {
-            --primary: #4a90e2; /* Azul cielo para temática de transportes */
-            --success: #55E6C1;
-            --error: #FF4D4D;
-            --bg: #F0F4F8;
+            --primary: #54a0ff; /* Azul brillante */
+            --success: #1dd1a1;
+            --error: #ff6b6b;
+            --bg: #f1f2f6;
         }
 
         body { 
@@ -27,32 +27,30 @@
             border-radius: 30px; 
             max-width: 800px; 
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            border: 4px solid var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary);
         }
 
         h2 { 
             text-align: center; 
             margin-bottom: 5px; 
-            color: #2D3436;
+            color: #2f3542;
             text-transform: uppercase;
-            font-size: 24px;
         }
 
         p.subtitle { 
             text-align: center; 
-            color: #636E72; 
+            color: #747d8c; 
             margin-bottom: 20px; 
             font-weight: 500;
         }
 
         .image-container {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 15px;
             margin-bottom: 25px;
             overflow: hidden;
-            border: 2px solid #DFE6E9;
-            background: white;
+            border: 2px solid #dfe4ea;
         }
 
         .main-image { width: 100%; height: auto; display: block; }
@@ -66,10 +64,10 @@
         @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
 
         .row { 
-            background: #F1F7FD;
+            background: #f8f9fa;
             padding: 12px;
             border-radius: 15px;
-            border: 1px solid #D1E1F0;
+            border: 1px solid #e1e4e8;
         }
 
         label { 
@@ -77,14 +75,14 @@
             font-size: 14px; 
             display: block; 
             margin-bottom: 5px;
-            color: #2D3436;
+            color: #2f3542;
         }
 
         .input-group { 
             display: flex; 
             align-items: center; 
             background: white;
-            border: 2px solid #BDC3C7; 
+            border: 2px solid #ced4da; 
             border-radius: 10px; 
             transition: 0.3s;
         }
@@ -114,13 +112,12 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #357ABD; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #2e86de; }
         #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
         
-        #btnReset { background: #B2BEC3; color: white; box-shadow: 0 4px 0 #636E72; }
+        #btnReset { background: #ced4da; color: #2f3542; box-shadow: 0 4px 0 #a4b0be; }
         #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
@@ -129,7 +126,6 @@
             padding: 15px;
             border-radius: 15px;
             display: none;
-            font-size: 18px;
             font-weight: bold;
         }
     </style>
@@ -137,14 +133,14 @@
 <body>
 
 <div class="card">
-    <h2>🚀 TRANSPORTS</h2>
-    <p class="subtitle">Escribe la palabra en inglés. ¡Escúchala al acertar! 🔊</p>
+    <h2>💻 EN LA OFICINA / WRITING PROJECT</h2>
+    <p class="subtitle">Escribe en inglés y pulsa "Verificar" para escuchar 🔊</p>
 
     <div class="image-container">
-        <!-- Reemplaza 'transports.jpg' por el nombre de tu archivo local -->
-        <img src="transports.jpg" 
-             onerror="this.src='https://i.ibb.co/LzhF3Yn/transports.jpg'" 
-             alt="Medios de transporte" 
+        <!-- Reemplaza 'writing_project.jpg' por el nombre de tu archivo local -->
+        <img src="writing_project.jpg" 
+             onerror="this.src='https://i.ibb.co/30C9Xh7/oficina.jpg'" 
+             alt="Office objects" 
              class="main-image">
     </div>
 
@@ -153,29 +149,28 @@
     <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">LIMPIAR TODO</button>
+        <button id="btnReset" class="main-btn">LIMPIAR</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Vocabulario basado en la imagen de transportes
-    const transportes = [
-        { es: "Autobús", en: "bus" },
-        { es: "Barco", en: "boat" },
-        { es: "Avión", en: "plane" },
-        { es: "Camión", en: "truck" },
-        { es: "Helicóptero", en: "helicopter" },
-        { es: "Coche", en: "car" },
-        { es: "Moto", en: "motorbike" },
-        { es: "Bici", en: "bike" },
-        { es: "Semáforo", en: "traffic light" }
+    // Vocabulario basado exactamente en las etiquetas de la imagen
+    const oficina = [
+        { es: "Ordenador", en: "computer" },
+        { es: "Teclado", en: "keyboard" },
+        { es: "Escritorio", en: "desk" },
+        { es: "Libro", en: "book" },
+        { es: "Ratón", en: "mouse" },
+        { es: "Cajón", en: "drawer" },
+        { es: "Marca", en: "tick" }, // También puede ser "check"
+        { es: "Cruz", en: "cross" }
     ];
 
     const quizContainer = document.getElementById('quiz');
     const scoreBoard = document.getElementById('score');
 
-    // Función de voz (Web Speech API)
+    // Función de voz
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
@@ -183,8 +178,8 @@
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar campos de respuesta automáticamente
-    transportes.forEach((item, i) => {
+    // Generar campos de respuesta
+    oficina.forEach((item, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
@@ -206,13 +201,16 @@
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
 
-            if (escrita === correcta && escrita !== "") {
+            // Lógica especial para 'tick/check'
+            let esCorrecto = (escrita === correcta);
+            if (correcta === "tick" && escrita === "check") esCorrecto = true;
+
+            if (esCorrecto && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                // La voz solo se activa en respuestas correctas
-                pronunciar(correcta); 
+                pronunciar(escrita); // Suena automáticamente al acertar
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -221,30 +219,29 @@
         });
 
         scoreBoard.style.display = "block";
-        if (aciertos === transportes.length) {
-            scoreBoard.innerText = "¡EXCELENTE! 🌟 ¡Dominas los transportes!";
-            scoreBoard.style.background = "#EAFBF4";
+        if (aciertos === oficina.length) {
+            scoreBoard.innerText = "¡PROYECTO COMPLETADO! 🌟 ¡Excelente trabajo!";
+            scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `Has logrado ${aciertos} de ${transportes.length}`;
-            scoreBoard.style.background = "#FFF5F5";
+            scoreBoard.innerText = `Has logrado ${aciertos} de ${oficina.length}`;
+            scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
-    // Eventos de botones
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
         campos.forEach(c => {
             c.value = "";
-            c.parentElement.style.borderColor = "#BDC3C7";
+            c.parentElement.style.borderColor = "#ced4da";
         });
         avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
     });
 
-    // Navegación con tecla Enter
+    // Navegación con Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
