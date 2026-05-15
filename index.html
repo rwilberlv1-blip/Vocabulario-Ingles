@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English: Writing Project - En la Oficina</title>
+    <title>Repaso Inglés: Seres Vivos</title>
     <style>
         :root {
-            --primary: #54a0ff; /* Azul brillante */
-            --success: #1dd1a1;
-            --error: #ff6b6b;
-            --bg: #f1f2f6;
+            --primary: #2ecc71; /* Verde naturaleza */
+            --success: #27ae60;
+            --error: #e74c3c;
+            --bg: #f4f7f6;
         }
 
         body { 
@@ -25,32 +25,34 @@
             background: white; 
             padding: 25px; 
             border-radius: 30px; 
-            max-width: 800px; 
+            max-width: 750px; 
             width: 100%;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-top: 8px solid var(--primary);
+            border: 4px solid var(--primary); 
         }
 
         h2 { 
             text-align: center; 
             margin-bottom: 5px; 
-            color: #2f3542;
+            color: #2c3e50;
             text-transform: uppercase;
+            font-size: 24px;
         }
 
         p.subtitle { 
             text-align: center; 
-            color: #747d8c; 
+            color: #7f8c8d; 
             margin-bottom: 20px; 
             font-weight: 500;
         }
 
         .image-container {
             width: 100%;
-            border-radius: 15px;
+            border-radius: 20px;
             margin-bottom: 25px;
             overflow: hidden;
-            border: 2px solid #dfe4ea;
+            border: 2px solid #ecf0f1;
+            background: #fff;
         }
 
         .main-image { width: 100%; height: auto; display: block; }
@@ -64,10 +66,10 @@
         @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
 
         .row { 
-            background: #f8f9fa;
+            background: #f9fdfb;
             padding: 12px;
             border-radius: 15px;
-            border: 1px solid #e1e4e8;
+            border: 1px solid #d5e8d4;
         }
 
         label { 
@@ -75,14 +77,14 @@
             font-size: 14px; 
             display: block; 
             margin-bottom: 5px;
-            color: #2f3542;
+            color: #27ae60;
         }
 
         .input-group { 
             display: flex; 
             align-items: center; 
             background: white;
-            border: 2px solid #ced4da; 
+            border: 2px solid #bdc3c7; 
             border-radius: 10px; 
             transition: 0.3s;
         }
@@ -100,7 +102,7 @@
             font-weight: 600;
         }
 
-        .feedback { margin: 0 10px; font-weight: bold; width: 20px; text-align: center; }
+        .feedback { margin: 0 10px; font-weight: bold; width: 20px; text-align: center; font-size: 18px; }
 
         .buttons { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
@@ -112,12 +114,13 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #2e86de; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #27ae60; }
         #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
         
-        #btnReset { background: #ced4da; color: #2f3542; box-shadow: 0 4px 0 #a4b0be; }
+        #btnReset { background: #bdc3c7; color: white; box-shadow: 0 4px 0 #95a5a6; }
         #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
@@ -126,6 +129,7 @@
             padding: 15px;
             border-radius: 15px;
             display: none;
+            font-size: 18px;
             font-weight: bold;
         }
     </style>
@@ -133,38 +137,37 @@
 <body>
 
 <div class="card">
-    <h2>💻 EN LA OFICINA / WRITING PROJECT</h2>
-    <p class="subtitle">Escribe en inglés y pulsa "Verificar" para escuchar 🔊</p>
+    <h2>🌿 SERES VIVOS / LIVING THINGS</h2>
+    <p class="subtitle">Escribe la palabra en inglés. ¡Escúchala al acertar! 🔊</p>
 
     <div class="image-container">
-        <!-- Reemplaza 'writing_project.jpg' por el nombre de tu archivo local -->
-        <img src="writing_project.jpg" 
-             onerror="this.src='https://i.ibb.co/30C9Xh7/oficina.jpg'" 
-             alt="Office objects" 
+        <img src="seres_vivos.png" 
+             alt="Proyecto de Escritura: Seres Vivos" 
              class="main-image">
     </div>
 
     <div id="quiz"></div>
 
-    <div class="score-board" id="score"></div>
+    <div id="score" class="score-board"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">LIMPIAR</button>
+        <button id="btnReset" class="main-btn">BORRAR TODO</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Vocabulario basado exactamente en las etiquetas de la imagen
-    const oficina = [
-        { es: "Ordenador", en: "computer" },
-        { es: "Teclado", en: "keyboard" },
-        { es: "Escritorio", en: "desk" },
-        { es: "Libro", en: "book" },
-        { es: "Ratón", en: "mouse" },
-        { es: "Cajón", en: "drawer" },
-        { es: "Marca", en: "tick" }, // También puede ser "check"
-        { es: "Cruz", en: "cross" }
+    // Vocabulario extraído de la imagen
+    const seresVivos = [
+        { es: "Árbol", en: "tree" },
+        { es: "Pato", en: "duck" },
+        { es: "Césped", en: "grass" },
+        { es: "Ardilla", en: "squirrel" },
+        { es: "Niño", en: "boy" },
+        { es: "flor", en: "flower" },
+        { es: "Cachorro", en: "puppy" },
+        { es: "Niña", en: "girl" },
+        { es: "Bebé", en: "baby" }
     ];
 
     const quizContainer = document.getElementById('quiz');
@@ -179,7 +182,7 @@
     }
 
     // Generar campos de respuesta
-    oficina.forEach((item, i) => {
+    seresVivos.forEach((item, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
@@ -201,16 +204,13 @@
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
 
-            // Lógica especial para 'tick/check'
-            let esCorrecto = (escrita === correcta);
-            if (correcta === "tick" && escrita === "check") esCorrecto = true;
-
-            if (esCorrecto && escrita !== "") {
+            if (escrita === correcta && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                pronunciar(escrita); // Suena automáticamente al acertar
+                // La voz suena como recompensa al acertar
+                pronunciar(correcta); 
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -219,23 +219,24 @@
         });
 
         scoreBoard.style.display = "block";
-        if (aciertos === oficina.length) {
-            scoreBoard.innerText = "¡PROYECTO COMPLETADO! 🌟 ¡Excelente trabajo!";
+        if (aciertos === seresVivos.length) {
+            scoreBoard.innerText = "¡MARAVILLOSO! 🌿 ¡Conoces todos los seres vivos!";
             scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `Has logrado ${aciertos} de ${oficina.length}`;
+            scoreBoard.innerText = `Has logrado ${aciertos} de ${seresVivos.length}`;
             scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
+    // Eventos
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
         campos.forEach(c => {
             c.value = "";
-            c.parentElement.style.borderColor = "#ced4da";
+            c.parentElement.style.borderColor = "#bdc3c7";
         });
         avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
