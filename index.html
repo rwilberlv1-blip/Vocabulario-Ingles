@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Seres Vivos</title>
+    <title>Repaso Inglés: Proyecto de Escritura</title>
     <style>
         :root {
-            --primary: #2ecc71; /* Verde naturaleza */
-            --success: #27ae60;
-            --error: #e74c3c;
-            --bg: #f4f7f6;
+            --primary: #a29bfe; /* Morado pastel suave */
+            --success: #00b894;
+            --error: #d63031;
+            --bg: #f4f5f7;
         }
 
         body { 
@@ -25,33 +25,33 @@
             background: white; 
             padding: 25px; 
             border-radius: 30px; 
-            max-width: 750px; 
+            max-width: 800px; 
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 4px solid var(--primary); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--primary);
         }
 
         h2 { 
             text-align: center; 
             margin-bottom: 5px; 
-            color: #2c3e50;
+            color: #2d3436;
             text-transform: uppercase;
-            font-size: 24px;
+            letter-spacing: 1px;
         }
 
         p.subtitle { 
             text-align: center; 
-            color: #7f8c8d; 
-            margin-bottom: 20px; 
+            color: #636e72; 
+            margin-bottom: 25px; 
             font-weight: 500;
         }
 
         .image-container {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 15px;
             margin-bottom: 25px;
             overflow: hidden;
-            border: 2px solid #ecf0f1;
+            border: 2px solid #dfe6e9;
             background: #fff;
         }
 
@@ -59,32 +59,34 @@
 
         #quiz {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 15px;
         }
 
-        @media (max-width: 600px) { #quiz { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { #quiz { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 480px) { #quiz { grid-template-columns: 1fr; } }
 
         .row { 
-            background: #f9fdfb;
+            background: #fdfdfd;
             padding: 12px;
             border-radius: 15px;
-            border: 1px solid #d5e8d4;
+            border: 1px solid #e1e4e8;
         }
 
         label { 
             font-weight: bold; 
             font-size: 14px; 
             display: block; 
-            margin-bottom: 5px;
-            color: #27ae60;
+            margin-bottom: 8px;
+            color: #2d3436;
+            text-align: center;
         }
 
         .input-group { 
             display: flex; 
             align-items: center; 
             background: white;
-            border: 2px solid #bdc3c7; 
+            border: 2px solid #dfe6e9; 
             border-radius: 10px; 
             transition: 0.3s;
         }
@@ -94,15 +96,16 @@
         input { 
             flex: 1;
             padding: 10px; 
-            font-size: 16px; 
+            font-size: 15px; 
             border: none; 
             outline: none;
             background: transparent;
             width: 100%;
             font-weight: 600;
+            text-align: center;
         }
 
-        .feedback { margin: 0 10px; font-weight: bold; width: 20px; text-align: center; font-size: 18px; }
+        .feedback { font-weight: bold; width: 25px; text-align: center; }
 
         .buttons { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
@@ -117,10 +120,10 @@
             transition: 0.2s;
         }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #27ae60; }
+        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #6c5ce7; }
         #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
         
-        #btnReset { background: #bdc3c7; color: white; box-shadow: 0 4px 0 #95a5a6; }
+        #btnReset { background: #b2bec3; color: white; box-shadow: 0 4px 0 #636e72; }
         #btnReset:active { transform: translateY(3px); box-shadow: none; }
 
         .score-board { 
@@ -137,43 +140,44 @@
 <body>
 
 <div class="card">
-    <h2>🌿 SERES VIVOS / LIVING THINGS</h2>
+    <h2>📝 PROYECTO DE ESCRITURA</h2>
     <p class="subtitle">Escribe la palabra en inglés. ¡Escúchala al acertar! 🔊</p>
 
     <div class="image-container">
-        <img src="seres_vivos.png" 
-             alt="Proyecto de Escritura: Seres Vivos" 
+        <!-- Referencia exacta al archivo de la imagen que proporcionaste -->
+        <img src="objetos.png" 
+             alt="Vocabulario Proyecto de Escritura" 
              class="main-image">
     </div>
 
     <div id="quiz"></div>
 
-    <div id="score" class="score-board"></div>
+    <div class="score-board" id="score"></div>
 
     <div class="buttons">
-        <button id="btnReset" class="main-btn">BORRAR TODO</button>
+        <button id="btnReset" class="main-btn">LIMPIAR TODO</button>
         <button id="btnVerificar" class="main-btn">VERIFICAR</button>
     </div>
 </div>
 
 <script>
-    // Vocabulario extraído de la imagen
-    const seresVivos = [
-        { es: "Árbol", en: "tree" },
-        { es: "Pato", en: "duck" },
-        { es: "Césped", en: "grass" },
-        { es: "Ardilla", en: "squirrel" },
-        { es: "Niño", en: "boy" },
-        { es: "flor", en: "flower" },
-        { es: "Cachorro", en: "puppy" },
-        { es: "Niña", en: "girl" },
-        { es: "Bebé", en: "baby" }
+    // Vocabulario basado en las etiquetas de la imagen
+    const vocabulario = [
+        { es: "Luz", en: "light" },
+        { es: "Agua", en: "water" },
+        { es: "Arena", en: "sand" },
+        { es: "Piedra", en: "stone" },
+        { es: "Banco", en: "bench" },
+        { es: "Peluche", en: "teddy bear" },
+        { es: "Balón", en: "ball" },
+        { es: "Mochila escolar", en: "school bag" },
+        { es: "Bicicleta", en: "bicycle" }
     ];
 
     const quizContainer = document.getElementById('quiz');
     const scoreBoard = document.getElementById('score');
 
-    // Función de voz
+    // Función de voz (Pronunciación en inglés)
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
@@ -181,8 +185,8 @@
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar campos de respuesta
-    seresVivos.forEach((item, i) => {
+    // Generar los campos de respuesta automáticamente
+    vocabulario.forEach((item, i) => {
         const div = document.createElement('div');
         div.className = 'row';
         div.innerHTML = `
@@ -204,13 +208,20 @@
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
 
-            if (escrita === correcta && escrita !== "") {
+            // Flexibilidad para sinónimos comunes en inglés
+            let esCorrecto = (escrita === correcta);
+            if (correcta === "bicycle" && escrita === "bike") esCorrecto = true;
+            if (correcta === "school bag" && escrita === "backpack") esCorrecto = true;
+            if (correcta === "teddy bear" && escrita === "teddy") esCorrecto = true;
+            if (correcta === "stone" && escrita === "rock") esCorrecto = true;
+
+            if (esCorrecto && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                // La voz suena como recompensa al acertar
-                pronunciar(correcta); 
+                // Pronunciar la palabra que el niño escribió (ej. si puso 'bike', dirá 'bike')
+                pronunciar(escrita);
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -219,30 +230,30 @@
         });
 
         scoreBoard.style.display = "block";
-        if (aciertos === seresVivos.length) {
-            scoreBoard.innerText = "¡MARAVILLOSO! 🌿 ¡Conoces todos los seres vivos!";
+        if (aciertos === vocabulario.length) {
+            scoreBoard.innerText = "¡EXCELENTE! ✨ Has completado el proyecto.";
             scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `Has logrado ${aciertos} de ${seresVivos.length}`;
+            scoreBoard.innerText = `¡Sigue intentando! Llevas ${aciertos} de ${vocabulario.length}`;
             scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
-    // Eventos
+    // Eventos de los botones
     document.getElementById('btnVerificar').addEventListener('click', verificar);
     
     document.getElementById('btnReset').addEventListener('click', () => {
         campos.forEach(c => {
             c.value = "";
-            c.parentElement.style.borderColor = "#bdc3c7";
+            c.parentElement.style.borderColor = "#dfe6e9";
         });
         avisos.forEach(a => a.innerText = "");
         scoreBoard.style.display = "none";
     });
 
-    // Navegación con Enter
+    // Navegación rápida con tecla Enter
     campos.forEach((campo, index) => {
         campo.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
