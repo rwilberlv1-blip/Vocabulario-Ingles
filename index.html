@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repaso Inglés: Proyecto de Escritura</title>
+    <title>Juego Final: Repaso de Inglés</title>
     <style>
         :root {
-            --primary: #a29bfe; /* Morado pastel suave */
+            --primary: #6c5ce7; 
+            --secondary: #00cec9;
             --success: #00b894;
             --error: #d63031;
-            --bg: #f4f5f7;
+            --bg: #dfe6e9;
+            --card-bg: #ffffff;
         }
 
         body { 
@@ -19,165 +21,312 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0;
+            min-height: 100vh;
         }
 
-        .card { 
-            background: white; 
-            padding: 25px; 
+        .container { 
+            background: var(--card-bg); 
+            padding: 30px; 
             border-radius: 30px; 
-            max-width: 800px; 
+            max-width: 1100px; 
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 8px solid var(--primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
-        h2 { 
-            text-align: center; 
-            margin-bottom: 5px; 
-            color: #2d3436;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        h1 { text-align: center; color: #2d3436; text-transform: uppercase; margin-bottom: 5px; font-size: 28px; }
+        p.subtitle { text-align: center; color: #636e72; margin-bottom: 30px; font-weight: 500; font-size: 16px;}
+
+        /* PANTALLA 1: MENÚ PRINCIPAL */
+        #menu-screen { display: block; }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
         }
 
-        p.subtitle { 
-            text-align: center; 
-            color: #636e72; 
-            margin-bottom: 25px; 
-            font-weight: 500;
+        .level-card {
+            background: #f8f9fa;
+            border: 3px solid #dfe4ea;
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .image-container {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            border: 2px solid #dfe6e9;
+        .level-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--primary); 
+            box-shadow: 0 12px 25px rgba(108, 92, 231, 0.15); 
             background: #fff;
         }
-
-        .main-image { width: 100%; height: auto; display: block; }
-
-        #quiz {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-        }
-
-        @media (max-width: 768px) { #quiz { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 480px) { #quiz { grid-template-columns: 1fr; } }
-
-        .row { 
-            background: #fdfdfd;
-            padding: 12px;
-            border-radius: 15px;
-            border: 1px solid #e1e4e8;
-        }
-
-        label { 
-            font-weight: bold; 
-            font-size: 14px; 
-            display: block; 
-            margin-bottom: 8px;
-            color: #2d3436;
-            text-align: center;
-        }
-
-        .input-group { 
-            display: flex; 
-            align-items: center; 
-            background: white;
-            border: 2px solid #dfe6e9; 
-            border-radius: 10px; 
-            transition: 0.3s;
-        }
-
-        .input-group:focus-within { border-color: var(--primary); }
-
-        input { 
-            flex: 1;
-            padding: 10px; 
-            font-size: 15px; 
-            border: none; 
-            outline: none;
-            background: transparent;
-            width: 100%;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .feedback { font-weight: bold; width: 25px; text-align: center; }
-
-        .buttons { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
-        button.main-btn { 
-            padding: 15px; 
-            border: none; 
-            border-radius: 15px; 
-            font-weight: bold; 
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .level-emoji { font-size: 55px; margin-bottom: 15px; }
+        .level-title { font-weight: bold; font-size: 16px; color: #2f3542; text-transform: uppercase; }
+
+        /* PANTALLA 2: EJERCICIO */
+        #exercise-screen { display: none; }
+        
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        
+        .btn-back {
+            background: #b2bec3; color: white; border: none; padding: 12px 20px; 
+            border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 15px;
             transition: 0.2s;
         }
+        .btn-back:hover { background: #636e72; }
 
-        #btnVerificar { background: var(--primary); color: white; box-shadow: 0 4px 0 #6c5ce7; }
-        #btnVerificar:active { transform: translateY(3px); box-shadow: none; }
-        
-        #btnReset { background: #b2bec3; color: white; box-shadow: 0 4px 0 #636e72; }
-        #btnReset:active { transform: translateY(3px); box-shadow: none; }
-
-        .score-board { 
-            text-align: center; 
-            margin-top: 25px; 
-            padding: 15px;
-            border-radius: 15px;
-            display: none;
-            font-size: 18px;
-            font-weight: bold;
+        .image-container { 
+            width: 100%; border-radius: 20px; margin-bottom: 30px; overflow: hidden; 
+            border: 2px solid #dfe6e9; background: #fafafa; text-align: center; padding: 10px; box-sizing: border-box;
         }
+        .main-image { max-width: 100%; max-height: 400px; width: auto; height: auto; display: inline-block; border-radius: 10px; }
+
+        #quiz { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+
+        .row { background: #fdfdfd; padding: 12px; border-radius: 15px; border: 1px solid #e1e4e8; }
+        label { font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px; color: #2d3436; }
+
+        .input-group { display: flex; align-items: center; background: white; border: 2px solid #dfe6e9; border-radius: 10px; transition: 0.3s; }
+        .input-group:focus-within { border-color: var(--primary); }
+        input { flex: 1; padding: 10px 12px; font-size: 15px; border: none; outline: none; background: transparent; font-weight: 600; }
+        .feedback { font-weight: bold; width: 30px; text-align: center; font-size: 18px;}
+
+        .btn-verify { 
+            width: 100%; padding: 18px; margin-top: 30px; border: none; border-radius: 15px; 
+            font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 16px; letter-spacing: 1px;
+            background: var(--primary); color: white; box-shadow: 0 5px 0 #4a40a0; transition: 0.1s;
+        }
+        .btn-verify:active { transform: translateY(5px); box-shadow: none; }
+
+        .score-board { text-align: center; margin-top: 25px; padding: 20px; border-radius: 15px; display: none; font-size: 18px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>📝 PROYECTO DE ESCRITURA</h2>
-    <p class="subtitle">Escribe la palabra en inglés. ¡Escúchala al acertar! 🔊</p>
-
-    <div class="image-container">
-        <!-- Referencia exacta al archivo de la imagen que proporcionaste -->
-        <img src="objetos.png" 
-             alt="Vocabulario Proyecto de Escritura" 
-             class="main-image">
+<div class="container">
+    
+    <!-- PANTALLA DE MENÚ -->
+    <div id="menu-screen">
+        <h1>🌟 GRAN JUEGO DE INGLÉS 🌟</h1>
+        <p class="subtitle">¡Elige un tema para empezar a repasar todo lo aprendido!</p>
+        <div class="menu-grid" id="menu-grid"></div>
     </div>
 
-    <div id="quiz"></div>
+    <!-- PANTALLA DE EJERCICIOS -->
+    <div id="exercise-screen">
+        <div class="nav-bar">
+            <button class="btn-back" onclick="volverAlMenu()">⬅ Volver al Menú</button>
+            <h2 id="ex-title" style="margin:0; color:#2d3436; text-transform: uppercase; font-size: 22px;">Título</h2>
+            <div style="width: 120px;"></div> <!-- Espaciador -->
+        </div>
 
-    <div class="score-board" id="score"></div>
+        <div class="image-container">
+            <img id="ex-image" src="" alt="Imagen del ejercicio" class="main-image">
+        </div>
 
-    <div class="buttons">
-        <button id="btnReset" class="main-btn">LIMPIAR TODO</button>
-        <button id="btnVerificar" class="main-btn">VERIFICAR</button>
+        <div id="quiz"></div>
+        <div id="score" class="score-board"></div>
+
+        <button id="btnVerificar" class="btn-verify" onclick="verificar()">VERIFICAR RESPUESTAS</button>
     </div>
+
 </div>
 
 <script>
-    // Vocabulario basado en las etiquetas de la imagen
-    const vocabulario = [
-        { es: "Luz", en: "light" },
-        { es: "Agua", en: "water" },
-        { es: "Arena", en: "sand" },
-        { es: "Piedra", en: "stone" },
-        { es: "Banco", en: "bench" },
-        { es: "Peluche", en: "teddy bear" },
-        { es: "Balón", en: "ball" },
-        { es: "Mochila escolar", en: "school bag" },
-        { es: "Bicicleta", en: "bicycle" }
+    // --- BASE DE DATOS AMPLIADA ---
+    const temas = [
+        {
+            titulo: "En la Escuela", emoji: "🏫", imagen: "escuela.png",
+            palabras: [
+                { es: "Escritorio", en: "desk", alt: "table" }, { es: "Silla", en: "chair" }, { es: "Libro", en: "book" },
+                { es: "Regla", en: "ruler" }, { es: "Bolígrafo", en: "pen" }, { es: "Lápiz", en: "pencil" }, { es: "Goma", en: "eraser" }
+            ]
+        },
+        {
+            titulo: "Transportes", emoji: "🚀", imagen: "transports.jpg",
+            palabras: [
+                { es: "Autobús", en: "bus" }, { es: "Barco", en: "boat" }, { es: "Avión", en: "plane", alt: "airplane" },
+                { es: "Camión", en: "truck" }, { es: "Helicóptero", en: "helicopter" }, { es: "Coche", en: "car" },
+                { es: "Moto", en: "motorcycle", alt: "motorbike" }, { es: "Bici", en: "bike", alt: "bicycle" }, { es: "Semáforo", en: "traffic light" }
+            ]
+        },
+        {
+            titulo: "Seres Vivos", emoji: "🌿", imagen: "seres_vivos.png",
+            palabras: [
+                { es: "Árbol", en: "tree" }, { es: "Pato", en: "duck" }, { es: "Césped", en: "grass" },
+                { es: "Ardilla", en: "squirrel" }, { es: "Niño", en: "boy" }, { es: "Flor", en: "flower" }, 
+                { es: "Cachorro", en: "puppy", alt: "dog" }, { es: "Niña", en: "girl" }, { es: "Bebé", en: "baby" }
+            ]
+        },
+        {
+            titulo: "En la Oficina", emoji: "💻", imagen: "writing_project.jpg",
+            palabras: [
+                { es: "Ordenador", en: "computer" }, { es: "Teclado", en: "keyboard" }, { es: "Escritorio", en: "desk" },
+                { es: "Libro", en: "book" }, { es: "Ratón", en: "mouse" }, { es: "Cajón", en: "drawer" },
+                { es: "Marca", en: "tick", alt: "check" }, { es: "Cruz", en: "cross" }
+            ]
+        },
+        {
+            titulo: "Objetos Varios", emoji: "🎒", imagen: "objetos.png",
+            palabras: [
+                { es: "Luz", en: "light" }, { es: "Agua", en: "water" }, { es: "Arena", en: "sand" },
+                { es: "Piedra", en: "stone", alt: "rock" }, { es: "Banco", en: "bench" }, { es: "Peluche", en: "teddy bear", alt: "teddy" },
+                { es: "Balón", en: "ball" }, { es: "Mochila escolar", en: "school bag", alt: "backpack" }, { es: "Bicicleta", en: "bicycle", alt: "bike" }
+            ]
+        },
+        {
+            titulo: "La Familia", emoji: "👨‍👩‍👧‍👦", imagen: "miembros_familia.png",
+            palabras: [
+                { es: "Hija", en: "daughter" }, { es: "Padre", en: "father", alt: "dad" }, { es: "Madre", en: "mother", alt: "mom" },
+                { es: "Abuela", en: "grandmother", alt: "grandma" }, { es: "Primo", en: "cousin" }, { es: "Hijo", en: "son" },
+                { es: "Padres", en: "parents" }, { es: "Abuelo", en: "grandfather", alt: "grandpa" }
+            ]
+        },
+        {
+            titulo: "La Casa", emoji: "🏠", imagen: "image_2.png",
+            palabras: [
+                { es: "Dormitorio", en: "bedroom" }, { es: "Pasillo", en: "hallway", alt: "corridor" }, { es: "Baño", en: "bathroom" },
+                { es: "Salón", en: "living room" }, { es: "Recibidor", en: "hall" }, { es: "Cocina", en: "kitchen" },
+                { es: "Comedor", en: "dining room" }, { es: "Jardín", en: "garden" }
+            ]
+        },
+        {
+            titulo: "La Comida", emoji: "🍎", imagen: "food.png",
+            palabras: [
+                { es: "Frutas", en: "fruits", alt: "fruit" }, { es: "Agua", en: "water" }, { es: "Carne", en: "meat" },
+                { es: "Pescado", en: "fish" }, { es: "Pan", en: "bread" }, { es: "Verduras", en: "vegetables" },
+                { es: "Huevo", en: "egg", alt: "eggs" }, { es: "Leche", en: "milk" }
+            ]
+        },
+        {
+            titulo: "El Comedor", emoji: "🍽️", imagen: "comedor.png",
+            palabras: [
+                { es: "Tenedor", en: "fork" }, { es: "Cuchara", en: "spoon" }, { es: "Vaso", en: "glass" },
+                { es: "Botella", en: "bottle" }, { es: "Silla", en: "chair" }, { es: "Tijeras", en: "scissors" },
+                { es: "Cuchillo", en: "knife" }, { es: "Mesa", en: "table" }
+            ]
+        },
+        {
+            titulo: "Los Colores", emoji: "🌈", imagen: "colores.png",
+            palabras: [
+                { es: "Rojo", en: "red" }, { es: "Naranja", en: "orange" }, { es: "Amarillo", en: "yellow" },
+                { es: "Verde", en: "green" }, { es: "Azul", en: "blue" }, { es: "Blanco", en: "white" },
+                { es: "Negro", en: "black" }, { es: "Marrón", en: "brown" }, { es: "Rosa", en: "pink" }, { es: "Morado", en: "purple" }
+            ]
+        },
+        {
+            titulo: "Partes de la Cara", emoji: "👁️", imagen: "cara.png",
+            palabras: [
+                { es: "Pestañas", en: "eyelashes" }, { es: "Cejas", en: "eyebrows" }, { es: "Orejas", en: "ears" },
+                { es: "Ojos", en: "eyes" }, { es: "Nariz", en: "nose" }, { es: "Boca", en: "mouth" },
+                { es: "Mejillas", en: "cheeks" }, { es: "Barbilla", en: "chin" }
+            ]
+        },
+        {
+            titulo: "En el Zoológico", emoji: "🦁", imagen: "zoologico.png",
+            palabras: [
+                { es: "Rana", en: "frog" }, { es: "Vaca", en: "cow" }, { es: "Gallina", en: "hen", alt: "chicken" },
+                { es: "Tigre", en: "tiger" }, { es: "Oveja", en: "sheep" }, { es: "Lagarto", en: "lizard" },
+                { es: "Pato", en: "duck" }, { es: "Cabra", en: "goat" }
+            ]
+        },
+        {
+            titulo: "Tienda de Ropa", emoji: "👕", imagen: "ropa.png",
+            palabras: [
+                { es: "Gafas", en: "glasses" }, { es: "Sombrero", en: "hat" }, { es: "Chaqueta", en: "jacket" },
+                { es: "Falda", en: "skirt" }, { es: "Zapatos", en: "shoes" }, { es: "Bolso", en: "bag", alt: "purse" },
+                { es: "Ropa", en: "clothes" }, { es: "Calcetines", en: "socks" }
+            ]
+        },
+        {
+            titulo: "El Cuerpo Humano", emoji: "🧍", imagen: "el cuerpo humano.png",
+            palabras: [
+                { es: "Cabeza", en: "head" }, { es: "Brazo", en: "arm" }, { es: "Codo", en: "elbow" },
+                { es: "Mano", en: "hand" }, { es: "Pierna", en: "leg" }, { es: "Rodillas", en: "knees" },
+                { es: "Pie", en: "foot" }, { es: "Pies", en: "feet" }
+            ]
+        },
+        {
+            titulo: "Días de la Semana", emoji: "📅", imagen: "dias_de_la_semana.png",
+            palabras: [
+                { es: "Lunes", en: "monday" }, { es: "Martes", en: "tuesday" }, { es: "Miércoles", en: "wednesday" },
+                { es: "Jueves", en: "thursday" }, { es: "Viernes", en: "friday" }, { es: "Sábado", en: "saturday" },
+                { es: "Domingo", en: "sunday" }
+            ]
+        }
     ];
 
+    const menuScreen = document.getElementById('menu-screen');
+    const exerciseScreen = document.getElementById('exercise-screen');
+    const menuGrid = document.getElementById('menu-grid');
     const quizContainer = document.getElementById('quiz');
     const scoreBoard = document.getElementById('score');
+    let temaActual = null;
 
-    // Función de voz (Pronunciación en inglés)
+    // Generar el Menú Principal
+    function inicializarMenu() {
+        temas.forEach((tema, index) => {
+            const card = document.createElement('div');
+            card.className = 'level-card';
+            card.onclick = () => cargarTema(index);
+            card.innerHTML = `
+                <div class="level-emoji">${tema.emoji}</div>
+                <div class="level-title">${tema.titulo}</div>
+            `;
+            menuGrid.appendChild(card);
+        });
+    }
+
+    // Cargar Ejercicio
+    function cargarTema(index) {
+        temaActual = temas[index];
+        document.getElementById('ex-title').innerText = temaActual.titulo;
+        document.getElementById('ex-image').src = temaActual.imagen;
+        
+        quizContainer.innerHTML = '';
+        scoreBoard.style.display = 'none';
+
+        temaActual.palabras.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'row';
+            const altText = item.alt ? item.alt : ""; 
+            
+            div.innerHTML = `
+                <label>${i+1}. ${item.es}</label>
+                <div class="input-group">
+                    <input type="text" class="respuesta" data-correcta="${item.en}" data-alt="${altText}" placeholder="..." autocomplete="off">
+                    <span class="feedback"></span>
+                </div>
+            `;
+            quizContainer.appendChild(div);
+        });
+
+        const campos = document.querySelectorAll('.respuesta');
+        campos.forEach((campo, i) => {
+            campo.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (i < campos.length - 1) campos[i + 1].focus();
+                    else verificar();
+                }
+            });
+        });
+
+        menuScreen.style.display = 'none';
+        exerciseScreen.style.display = 'block';
+    }
+
+    // Volver
+    function volverAlMenu() {
+        exerciseScreen.style.display = 'none';
+        menuScreen.style.display = 'block';
+    }
+
+    // Voz
     function pronunciar(texto) {
         const msg = new SpeechSynthesisUtterance(texto);
         msg.lang = 'en-US'; 
@@ -185,43 +334,26 @@
         window.speechSynthesis.speak(msg);
     }
 
-    // Generar los campos de respuesta automáticamente
-    vocabulario.forEach((item, i) => {
-        const div = document.createElement('div');
-        div.className = 'row';
-        div.innerHTML = `
-            <label>${i+1}. ${item.es}</label>
-            <div class="input-group">
-                <input type="text" class="respuesta" data-correcta="${item.en}" placeholder="..." autocomplete="off">
-                <span class="feedback"></span>
-            </div>
-        `;
-        quizContainer.appendChild(div);
-    });
-
-    const campos = document.querySelectorAll('.respuesta');
-    const avisos = document.querySelectorAll('.feedback');
-
+    // Verificar
     function verificar() {
         let aciertos = 0;
+        const campos = document.querySelectorAll('.respuesta');
+        const avisos = document.querySelectorAll('.feedback');
+        const total = temaActual.palabras.length;
+
         campos.forEach((campo, i) => {
             const escrita = campo.value.trim().toLowerCase();
             const correcta = campo.getAttribute('data-correcta');
+            const alternativa = campo.getAttribute('data-alt');
 
-            // Flexibilidad para sinónimos comunes en inglés
-            let esCorrecto = (escrita === correcta);
-            if (correcta === "bicycle" && escrita === "bike") esCorrecto = true;
-            if (correcta === "school bag" && escrita === "backpack") esCorrecto = true;
-            if (correcta === "teddy bear" && escrita === "teddy") esCorrecto = true;
-            if (correcta === "stone" && escrita === "rock") esCorrecto = true;
+            let esCorrecto = (escrita === correcta || (alternativa !== "" && escrita === alternativa));
 
             if (esCorrecto && escrita !== "") {
                 avisos[i].innerText = "✓";
                 avisos[i].style.color = "var(--success)";
                 campo.parentElement.style.borderColor = "var(--success)";
                 aciertos++;
-                // Pronunciar la palabra que el niño escribió (ej. si puso 'bike', dirá 'bike')
-                pronunciar(escrita);
+                pronunciar(escrita); 
             } else {
                 avisos[i].innerText = "✗";
                 avisos[i].style.color = "var(--error)";
@@ -230,43 +362,18 @@
         });
 
         scoreBoard.style.display = "block";
-        if (aciertos === vocabulario.length) {
-            scoreBoard.innerText = "¡EXCELENTE! ✨ Has completado el proyecto.";
+        if (aciertos === total) {
+            scoreBoard.innerText = "¡RETO SUPERADO! 🌟 ¡Lo has hecho genial!";
             scoreBoard.style.background = "#eafaf1";
             scoreBoard.style.color = "var(--success)";
         } else {
-            scoreBoard.innerText = `¡Sigue intentando! Llevas ${aciertos} de ${vocabulario.length}`;
+            scoreBoard.innerText = `Has logrado ${aciertos} de ${total}. ¡Sigue intentando!`;
             scoreBoard.style.background = "#fff1f0";
             scoreBoard.style.color = "var(--error)";
         }
     }
 
-    // Eventos de los botones
-    document.getElementById('btnVerificar').addEventListener('click', verificar);
-    
-    document.getElementById('btnReset').addEventListener('click', () => {
-        campos.forEach(c => {
-            c.value = "";
-            c.parentElement.style.borderColor = "#dfe6e9";
-        });
-        avisos.forEach(a => a.innerText = "");
-        scoreBoard.style.display = "none";
-    });
-
-    // Navegación rápida con tecla Enter
-    campos.forEach((campo, index) => {
-        campo.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                if (index < campos.length - 1) {
-                    campos[index + 1].focus();
-                } else {
-                    verificar();
-                }
-            }
-        });
-    });
+    inicializarMenu();
 </script>
-
 </body>
 </html>
